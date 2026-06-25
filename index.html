@@ -474,6 +474,23 @@
   .adm-pill{ text-align:center; font-size:13px; font-weight:800; color:var(--ink); background:#F1F2EF; border-radius:10px; padding:9px 14px; margin:26px 0 18px; }
   .adm-pill:first-child{ margin-top:0; }
 
+  /* ---- ভর্তি ফরম মোবাইল ফিক্স: ফরমের লেআউট অক্ষুন্ন রেখে প্রয়োজনে নিচে হরাইজন্টাল স্ক্রলবার দেখাবে ---- */
+  @media (max-width:900px){
+    #page-admission .card.p-0.mb-5{
+      overflow-x:auto !important;
+      -webkit-overflow-scrolling:touch;
+      max-width:100%;
+    }
+    #page-admission .adm-letterhead,
+    #page-admission .adm-meta-strip,
+    #page-admission .adm-card-body{
+      min-width:680px;
+    }
+    #page-admission .adm-meta-strip{
+      grid-template-columns:1.2fr 1.2fr 1.2fr .8fr .8fr !important;
+    }
+  }
+
   /* ---- Universal printable receipt / form system ---- */
   #print-root{ display:none; }
 
