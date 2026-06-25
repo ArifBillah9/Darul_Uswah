@@ -1362,10 +1362,14 @@
 </div>
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-add" onclick="navigateTo('teacher-add')" type="button">নতুন শিক্ষক</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
+</div>
+<div class="card p-4 mb-3" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#f6faf8;border-color:var(--green-100,#d7ecdf)">
+<svg fill="none" height="16" stroke="var(--green-700)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" style="flex-shrink:0"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+<p class="text-[12.5px]" style="color:var(--green-700)">নতুন শিক্ষক নিয়োগ এখন <b>ফি কনফিগারেশন → শিক্ষক</b> ট্যাব থেকে করা হয়, বেতন নির্ধারণের পাশেই।</p>
+<button class="btn-outline !py-1.5 !px-3 !text-[12px]" onclick="App.openTeacherAddNew()" style="margin-left:auto" type="button">নতুন শিক্ষক যুক্ত করুন</button>
 </div>
 <div class="hub-grid">
 <a class="hub-card" href="#" onclick="navigateTo('teacher-list');return false;">
@@ -1434,17 +1438,20 @@
 </div>
 </div>
 <div class="grid grid-cols-3 gap-5 mb-6">
-<div class="card p-5 col-span-2">
-<div class="flex items-center justify-between mb-3">
-<h3 class="font-extrabold text-[15px]">সাম্প্রতিক ফি আদায়</h3>
-<a class="text-[12px] font-semibold" href="#" onclick="navigateTo('fee-history');return false;" style="color:var(--green-700)">সব দেখুন →</a>
+<div class="card p-5 col-span-2" style="overflow:hidden;">
+<div class="flex items-center justify-between mb-4">
+<div style="display:flex;align-items:center;gap:10px;">
+<div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--green-deep),var(--green-600));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
 </div>
-<div class="overflow-x-auto">
-<table class="dt w-full text-[12px]">
-<thead><tr><th>রসিদ নং</th><th>নাম</th><th>উদ্দেশ্য</th><th class="text-right">টাকা</th><th>তারিখ</th></tr></thead>
-<tbody id="dash-recent-receipts"></tbody>
-</table>
+<div>
+<h3 class="font-extrabold text-[15px]" style="line-height:1.2;">সাম্প্রতিক ফি আদায়</h3>
+<p class="text-[11px]" style="color:var(--muted);margin-top:1px;">সর্বশেষ ৮টি লেনদেন</p>
 </div>
+</div>
+<a href="#" onclick="navigateTo('fee-history');return false;" style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--green-700);background:var(--green-100);padding:5px 12px;border-radius:20px;text-decoration:none;">সব দেখুন <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+</div>
+<div id="dash-recent-receipts-wrap"></div>
 </div>
 <div class="card p-5">
 <div class="flex items-center justify-between mb-3">
@@ -1461,14 +1468,14 @@
 </div>
 <div class="card p-5">
 <h3 class="font-extrabold text-[15px] mb-3">দ্রুত রিপোর্ট ডাউনলোড</h3>
-<div class="grid grid-cols-2 gap-2.5">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
 <button class="btn-secondary" onclick="App.exportStudentList('xlsx');" type="button">শিক্ষার্থী তালিকা (Excel)</button>
 <button class="btn-secondary" onclick="App.exportStudentList('csv');" type="button">শিক্ষার্থী তালিকা (CSV)</button>
 <button class="btn-secondary" onclick="App.exportFeeHistory('xlsx');" type="button">ফি আদায় (Excel)</button>
 <button class="btn-secondary" onclick="App.exportFeeDue('xlsx');" type="button">বকেয়া তালিকা (Excel)</button>
 <button class="btn-secondary" onclick="App.exportTeacherSalaryHistory('xlsx');" type="button">শিক্ষক বেতন (Excel)</button>
 <button class="btn-secondary" onclick="App.exportTeacherList('xlsx');" type="button">শিক্ষক তালিকা (Excel)</button>
-<button class="btn-secondary col-span-2" onclick="App.exportBackup();" type="button">পূর্ণ ব্যাকআপ (JSON)</button>
+<button class="btn-secondary" onclick="App.exportBackup();" style="grid-column:1/-1;" type="button">পূর্ণ ব্যাকআপ (JSON)</button>
 </div>
 </div>
 </div>
@@ -2334,21 +2341,166 @@
 </table>
 </div>
 </section>
-<!-- ============ নতুন শিক্ষক যুক্ত ============ -->
-<section class="page-section" data-hub="hub-teacher" id="page-teacher-add">
+<!-- ============ শিক্ষক ব্যবস্থাপনা ============ -->
+<section class="page-section" data-hub="hub-teacher" id="page-teacher-list">
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-add" onclick="navigateTo('teacher-add')" type="button">নতুন শিক্ষক</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
 </div>
 <div class="module-header">
 <div>
-<button class="back-pill" onclick="navigateTo('fee-config')" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="13"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>ফি কনফিগারেশন</button>
-<p class="crumb">ফি কনফিগারেশন <span class="px-1 text-muted">/</span> <span id="tad-crumb-current">নতুন শিক্ষক যুক্ত করুন</span></p>
+<button class="back-pill" onclick="navigateTo('hub-teacher')" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="13"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>শিক্ষক ব্যবস্থাপনা</button>
+<p class="crumb">শিক্ষক ব্যবস্থাপনা <span class="px-1 text-muted">/</span> <span>শিক্ষক তালিকা</span></p>
 </div>
 </div>
+<div class="card p-4 mb-5 flex flex-wrap items-center gap-3">
+<div class="flex items-center gap-2 border border-line rounded-xl px-3.5 py-2.5 flex-1 min-w-[220px]">
+<svg fill="none" height="15" stroke="#8A8F8B" stroke-width="2" viewbox="0 0 24 24" width="15"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3" stroke-linecap="round"></path></svg>
+<input class="flex-1 outline-none text-[13px] bg-transparent placeholder:text-muted" id="tlist-search" oninput="App.renderTeacherList()" placeholder="নাম, আইডি বা মোবাইল নম্বর দিয়ে খুঁজুন" type="text"/>
+</div>
+<div class="flex items-center gap-3 ml-auto"><button class="btn-primary" onclick="App.openTeacherAddNew()" type="button"><svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="3" viewbox="0 0 24 24" width="14"><path d="M12 5v14M5 12h14"></path></svg>নতুন শিক্ষক যুক্ত করুন</button></div></div>
+<div class="card p-0 overflow-x-auto">
+<table class="data-table" style="min-width:900px">
+<thead><tr><th>আইডি</th><th>নাম</th><th>পদবি</th><th>বিভাগ</th><th>মোবাইল</th><th>মাসিক বেতন</th><th>স্ট্যাটাস</th><th>একশন</th></tr></thead>
+<tbody id="tlist-tbody"></tbody>
+</table>
+</div>
+</section>
+<section class="page-section" data-hub="hub-teacher" id="page-teacher-salary">
+<div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
+</div>
+<div class="module-header">
+<div>
+<button class="back-pill" onclick="navigateTo('hub-teacher')" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="13"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>শিক্ষক ব্যবস্থাপনা</button>
+<p class="crumb">শিক্ষক ব্যবস্থাপনা <span class="px-1 text-muted">/</span> <span>শিক্ষক বেতন প্রদান</span></p>
+</div>
+</div>
+<div class="card p-5 mb-5">
+<div class="flex items-center gap-2 border border-line rounded-xl px-3.5 py-3 max-w-[420px]">
+<svg fill="none" height="15" stroke="#8A8F8B" stroke-width="2" viewbox="0 0 24 24" width="15"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3" stroke-linecap="round"></path></svg>
+<input class="flex-1 outline-none text-[13px] bg-transparent placeholder:text-muted" id="tsal-search" onkeydown="if(event.key === 'Enter'){App.teacherSalarySearch();}" placeholder="শিক্ষকের আইডি বা নাম লিখুন" type="text"/>
+<button class="btn-primary !py-2 !px-4" onclick="App.teacherSalarySearch()" type="button">খুঁজুন</button>
+</div>
+</div>
+<div id="tsal-result"></div>
+</section>
+<section class="page-section" data-hub="hub-teacher" id="page-teacher-salary-history">
+<div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
+</div>
+<div class="module-header">
+<div>
+<button class="back-pill" onclick="navigateTo('hub-teacher')" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="13"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>শিক্ষক ব্যবস্থাপনা</button>
+<p class="crumb">শিক্ষক ব্যবস্থাপনা <span class="px-1 text-muted">/</span> <span>বেতন পরিশোধের ইতিহাস</span></p>
+</div>
+</div>
+<div class="card p-4 mb-5 flex flex-wrap items-center gap-3">
+<div class="flex items-center gap-2 border border-line rounded-xl px-3.5 py-2.5 flex-1 min-w-[220px]">
+<svg fill="none" height="15" stroke="#8A8F8B" stroke-width="2" viewbox="0 0 24 24" width="15"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3" stroke-linecap="round"></path></svg>
+<input class="flex-1 outline-none text-[13px] bg-transparent placeholder:text-muted" id="tshist-search" oninput="App.renderTeacherSalaryHistory()" placeholder="নাম, আইডি বা রিসিট নম্বর দিয়ে খুঁজুন" type="text"/>
+</div>
+</div>
+<div class="card p-0 overflow-x-auto">
+<table class="data-table" style="min-width:850px">
+<thead><tr><th>রিসিট নং</th><th>তারিখ</th><th>শিক্ষকের নাম</th><th>পদবি</th><th>মাস</th><th>পরিমাণ</th><th>প্রদানকারী</th><th>একশন</th></tr></thead>
+<tbody id="tshist-tbody"></tbody>
+</table>
+</div>
+</section>
+<section class="page-section" data-hub="hub-teacher" id="page-teacher-salary-due">
+<div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
+</div>
+<div class="module-header">
+<div>
+<button class="back-pill" onclick="navigateTo('hub-teacher')" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="13"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>শিক্ষক ব্যবস্থাপনা</button>
+<p class="crumb">শিক্ষক ব্যবস্থাপনা <span class="px-1 text-muted">/</span> <span>বেতন বকেয়া</span></p>
+</div>
+</div>
+<div class="card p-0 overflow-x-auto">
+<table class="data-table" style="min-width:850px">
+<thead><tr><th>আইডি</th><th>নাম</th><th>পদবি</th><th>মাসিক বেতন</th><th>সর্বমোট বকেয়া</th><th>সর্বশেষ পরিশোধ</th><th>একশন</th></tr></thead>
+<tbody id="tsdue-tbody"></tbody>
+</table>
+</div>
+</section>
+<!-- ============ ফি কনফিগারেশন ============ -->
+<section class="page-section" id="page-fee-config">
+<div class="module-header" style="margin-bottom:0">
+<div>
+<p class="text-[13px] text-muted mt-1">সমস্ত ফি, এমাউন্ট ও শিক্ষক সংক্রান্ত কার্যক্রম এক জায়গা থেকে পরিচালনা করুন</p>
+</div>
+</div>
+<!-- ট্যাব নেভবার -->
+<div class="fee-cfg-tab-bar">
+<button class="fee-cfg-tab active" data-tab="chargeconfig" onclick="App.openFeeTab('chargeconfig')">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"></path></svg>
+          শিক্ষার্থীদের ফি ধার্য
+        </button>
+<button class="fee-cfg-tab" data-tab="teacher" onclick="App.openFeeTab('teacher')">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"></path><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"></path></svg>
+          শিক্ষক
+        </button>
+</div>
+<!-- ট্যাব প্যানেলগুলো -->
+<!-- ৬. শিক্ষক — বেতন নির্ধারণ ও নতুন শিক্ষক নিয়োগ -->
+<div class="fee-cfg-panel" id="fee-tab-teacher" style="display:none">
+<div class="card p-5" style="margin-bottom:0">
+<p class="font-extrabold text-[16px] mb-1" style="color:var(--green-700)">শিক্ষক ব্যবস্থাপনা</p>
+<p class="text-[12px] text-muted">শিক্ষকদের সকল কার্যক্রম — বেতন নির্ধারণ, নতুন শিক্ষক নিয়োগ ইত্যাদি — এখান থেকে এক জায়গায় পরিচালনা করুন।</p>
+</div>
+
+<!-- সাব নেভবার -->
+<div class="charge-sub-wrap">
+<div class="charge-sub-head"><span class="dot"></span><span>কার্যক্রম নির্বাচন করুন</span></div>
+<div class="charge-sub-bar">
+<button class="charge-sub-tab active" data-ttab="salary" onclick="App.openTeacherSubTab('salary')">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1.1 3 2.5-1.3 2.2-3 2.5c-1.7.3-3 1.1-3 2.5s1.3 2.5 3 2.5 3-1.1 3-2.5"></path></svg>
+বেতন নির্ধারণ</button>
+<button class="charge-sub-tab" data-ttab="add" onclick="App.openTeacherSubTab('add')">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14"><circle cx="9" cy="8" r="4"></circle><path d="M2 21c0-4 3-7 7-7s7 3 7 7"></path><line x1="19" x2="19" y1="8" y2="14"></line><line x1="16" x2="22" y1="11" y2="11"></line></svg>
+নতুন শিক্ষক নিয়োগ</button>
+</div>
+</div>
+
+<!-- সাব প্যানেল ১: বেতন নির্ধারণ -->
+<div class="charge-sub-panel" id="ttab-salary">
+<div class="card p-5">
+<p class="font-extrabold text-[16px] mb-1" style="color:var(--green-700)">শিক্ষক মাসিক বেতন নির্ধারণ</p>
+<p class="text-[12px] text-muted mb-4">সকল শিক্ষকের মাসিক বেতন এখান থেকে পরিবর্তন করুন।</p>
+<div class="overflow-x-auto" id="cfg-teacher-salary-list">
+<table class="data-table">
+<thead><tr><th>শিক্ষকের নাম</th><th>পদবি</th><th>বিভাগ</th><th>বর্তমান বেতন (৳)</th><th>নতুন বেতন (৳)</th><th>একশন</th></tr></thead>
+<tbody id="cfg-teacher-tbody"></tbody>
+</table>
+</div>
+<div class="mt-4" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+<button class="btn-primary" onclick="App.saveCfgTeacherSalaries()" type="button">
+<svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="13"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline></svg>
+              সব শিক্ষকের বেতন সংরক্ষণ করুন
+            </button>
+<button class="btn-primary" onclick="App.openTeacherAddNew()" style="background:var(--green-600)" type="button">
+<svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="13"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
+              নতুন শিক্ষক যুক্ত করুন
+            </button>
+</div>
+</div>
+</div>
+
+<!-- সাব প্যানেল ২: নতুন শিক্ষক নিয়োগ (পূর্বে "শিক্ষক ব্যবস্থাপনা" হাবে ছিল, এখন এখানে স্থানান্তরিত) -->
+<div class="charge-sub-panel" id="ttab-add" style="display:none">
 <div class="card p-0 mb-5" style="overflow:visible">
 <!-- লেটারহেড -->
 <div class="adm-letterhead">
@@ -2357,7 +2509,7 @@
 <p class="alh-ar">جامعة دار الأسوة</p>
 <p class="alh-name">জামি'আ দারুল উসওয়াহ</p>
 <p class="alh-addr">শাহ মখদুম আবাসিক এলাকা, সপুরা, রাজশাহী</p>
-<span class="alh-title">শিক্ষক নিয়োগ ফরম</span>
+<span class="alh-title" id="tad-crumb-current">নতুন শিক্ষক নিয়োগ ফরম</span>
 </div>
 <div class="alh-logo" style="background:transparent;visibility:hidden"></div>
 </div>
@@ -2430,6 +2582,7 @@
 </div>
 <!-- সেভ বোতাম -->
 <div class="flex items-center gap-3 mt-6 pt-5 border-t border-line">
+<button class="btn-primary" onclick="App.openTeacherSubTab('salary')" style="background:#8A8F8B" type="button">বেতন তালিকায় ফিরুন</button>
 <button class="btn-primary" onclick="App.resetTeacherAddForm()" style="background:#C13F3C" type="button">ক্লিয়ার</button>
 <button class="btn-primary" onclick="App.submitTeacherAdd()" type="button">
 <svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="13"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -2438,148 +2591,9 @@
 </div>
 </div>
 </div>
-</section>
-<!-- ============ শিক্ষক ব্যবস্থাপনা ============ -->
-<section class="page-section" data-hub="hub-teacher" id="page-teacher-list">
-<div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-add" onclick="navigateTo('teacher-add')" type="button">নতুন শিক্ষক</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
 </div>
-<div class="module-header">
-<div>
-<button class="back-pill" onclick="navigateTo('hub-teacher')" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="13"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>শিক্ষক ব্যবস্থাপনা</button>
-<p class="crumb">শিক্ষক ব্যবস্থাপনা <span class="px-1 text-muted">/</span> <span>শিক্ষক তালিকা</span></p>
-</div>
-</div>
-<div class="card p-4 mb-5 flex flex-wrap items-center gap-3">
-<div class="flex items-center gap-2 border border-line rounded-xl px-3.5 py-2.5 flex-1 min-w-[220px]">
-<svg fill="none" height="15" stroke="#8A8F8B" stroke-width="2" viewbox="0 0 24 24" width="15"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3" stroke-linecap="round"></path></svg>
-<input class="flex-1 outline-none text-[13px] bg-transparent placeholder:text-muted" id="tlist-search" oninput="App.renderTeacherList()" placeholder="নাম, আইডি বা মোবাইল নম্বর দিয়ে খুঁজুন" type="text"/>
-</div>
-<div class="flex items-center gap-3 ml-auto"><button class="btn-primary" onclick="navigateTo('teacher-add')" type="button"><svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="3" viewbox="0 0 24 24" width="14"><path d="M12 5v14M5 12h14"></path></svg>নতুন শিক্ষক যুক্ত করুন</button></div></div>
-<div class="card p-0 overflow-x-auto">
-<table class="data-table" style="min-width:900px">
-<thead><tr><th>আইডি</th><th>নাম</th><th>পদবি</th><th>বিভাগ</th><th>মোবাইল</th><th>মাসিক বেতন</th><th>স্ট্যাটাস</th><th>একশন</th></tr></thead>
-<tbody id="tlist-tbody"></tbody>
-</table>
-</div>
-</section>
-<section class="page-section" data-hub="hub-teacher" id="page-teacher-salary">
-<div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-add" onclick="navigateTo('teacher-add')" type="button">নতুন শিক্ষক</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
-</div>
-<div class="module-header">
-<div>
-<button class="back-pill" onclick="navigateTo('hub-teacher')" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="13"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>শিক্ষক ব্যবস্থাপনা</button>
-<p class="crumb">শিক্ষক ব্যবস্থাপনা <span class="px-1 text-muted">/</span> <span>শিক্ষক বেতন প্রদান</span></p>
-</div>
-</div>
-<div class="card p-5 mb-5">
-<div class="flex items-center gap-2 border border-line rounded-xl px-3.5 py-3 max-w-[420px]">
-<svg fill="none" height="15" stroke="#8A8F8B" stroke-width="2" viewbox="0 0 24 24" width="15"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3" stroke-linecap="round"></path></svg>
-<input class="flex-1 outline-none text-[13px] bg-transparent placeholder:text-muted" id="tsal-search" onkeydown="if(event.key === 'Enter'){App.teacherSalarySearch();}" placeholder="শিক্ষকের আইডি বা নাম লিখুন" type="text"/>
-<button class="btn-primary !py-2 !px-4" onclick="App.teacherSalarySearch()" type="button">খুঁজুন</button>
-</div>
-</div>
-<div id="tsal-result"></div>
-</section>
-<section class="page-section" data-hub="hub-teacher" id="page-teacher-salary-history">
-<div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-add" onclick="navigateTo('teacher-add')" type="button">নতুন শিক্ষক</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
-</div>
-<div class="module-header">
-<div>
-<button class="back-pill" onclick="navigateTo('hub-teacher')" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="13"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>শিক্ষক ব্যবস্থাপনা</button>
-<p class="crumb">শিক্ষক ব্যবস্থাপনা <span class="px-1 text-muted">/</span> <span>বেতন পরিশোধের ইতিহাস</span></p>
-</div>
-</div>
-<div class="card p-4 mb-5 flex flex-wrap items-center gap-3">
-<div class="flex items-center gap-2 border border-line rounded-xl px-3.5 py-2.5 flex-1 min-w-[220px]">
-<svg fill="none" height="15" stroke="#8A8F8B" stroke-width="2" viewbox="0 0 24 24" width="15"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3" stroke-linecap="round"></path></svg>
-<input class="flex-1 outline-none text-[13px] bg-transparent placeholder:text-muted" id="tshist-search" oninput="App.renderTeacherSalaryHistory()" placeholder="নাম, আইডি বা রিসিট নম্বর দিয়ে খুঁজুন" type="text"/>
-</div>
-</div>
-<div class="card p-0 overflow-x-auto">
-<table class="data-table" style="min-width:850px">
-<thead><tr><th>রিসিট নং</th><th>তারিখ</th><th>শিক্ষকের নাম</th><th>পদবি</th><th>মাস</th><th>পরিমাণ</th><th>প্রদানকারী</th><th>একশন</th></tr></thead>
-<tbody id="tshist-tbody"></tbody>
-</table>
-</div>
-</section>
-<section class="page-section" data-hub="hub-teacher" id="page-teacher-salary-due">
-<div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-add" onclick="navigateTo('teacher-add')" type="button">নতুন শিক্ষক</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
-</div>
-<div class="module-header">
-<div>
-<button class="back-pill" onclick="navigateTo('hub-teacher')" type="button"><svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="13"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>শিক্ষক ব্যবস্থাপনা</button>
-<p class="crumb">শিক্ষক ব্যবস্থাপনা <span class="px-1 text-muted">/</span> <span>বেতন বকেয়া</span></p>
-</div>
-</div>
-<div class="card p-0 overflow-x-auto">
-<table class="data-table" style="min-width:850px">
-<thead><tr><th>আইডি</th><th>নাম</th><th>পদবি</th><th>মাসিক বেতন</th><th>সর্বমোট বকেয়া</th><th>সর্বশেষ পরিশোধ</th><th>একশন</th></tr></thead>
-<tbody id="tsdue-tbody"></tbody>
-</table>
-</div>
-</section>
-<!-- ============ ফি কনফিগারেশন ============ -->
-<section class="page-section" id="page-fee-config">
-<div class="module-header" style="margin-bottom:0">
-<div>
-<p class="text-[13px] text-muted mt-1">সমস্ত ফি ও এমাউন্ট এক জায়গা থেকে সেট করুন</p>
-</div>
-</div>
-<!-- ট্যাব নেভবার -->
-<div class="fee-cfg-tab-bar">
-<button class="fee-cfg-tab active" data-tab="chargeconfig" onclick="App.openFeeTab('chargeconfig')">
-<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"></path></svg>
-          ফি ধার্য
-        </button>
-<button class="fee-cfg-tab" data-tab="teacher" onclick="App.openFeeTab('teacher')">
-<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14"><rect height="14" rx="2" width="20" x="2" y="3"></rect><path d="M8 21h8M12 17v4"></path><path d="M9 9l3 3 3-3"></path></svg>
-          শিক্ষক বেতন
-        </button>
-</div>
-<!-- ট্যাব প্যানেলগুলো -->
-<!-- ৬. শিক্ষক মাসিক বেতন -->
-<div class="fee-cfg-panel" id="fee-tab-teacher" style="display:none">
-<div class="card p-5">
-<p class="font-extrabold text-[16px] mb-1" style="color:var(--green-700)">শিক্ষক মাসিক বেতন</p>
-<p class="text-[12px] text-muted mb-4">সকল শিক্ষকের মাসিক বেতন এখান থেকে পরিবর্তন করুন।</p>
-<div class="overflow-x-auto" id="cfg-teacher-salary-list">
-<table class="data-table">
-<thead><tr><th>শিক্ষকের নাম</th><th>পদবি</th><th>বিভাগ</th><th>বর্তমান বেতন (৳)</th><th>নতুন বেতন (৳)</th><th>একশন</th></tr></thead>
-<tbody id="cfg-teacher-tbody"></tbody>
-</table>
-</div>
-<div class="mt-4" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-<button class="btn-primary" onclick="App.saveCfgTeacherSalaries()" type="button">
-<svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="13"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline></svg>
-              সব শিক্ষকের বেতন সংরক্ষণ করুন
-            </button>
-<button class="btn-primary" onclick="navigateTo('teacher-add')" style="background:var(--green-600)" type="button">
-<svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="13"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
-              নতুন শিক্ষক যুক্ত করুন
-            </button>
-</div>
-</div>
-</div>
+
+</div><!-- /fee-tab-teacher -->
 
 <!-- ৮. ফি ধার্য প্যানেল -->
 <div class="fee-cfg-panel" id="fee-tab-chargeconfig">
@@ -2885,6 +2899,8 @@ function navigateTo(pageId, el){
   document.querySelectorAll('.sub-nav-tab').forEach(function(b){
     b.classList.toggle('active', b.dataset.subPage===pageId);
   });
+  /* রিফ্রেশের পর একই পেজে ফিরে আসার জন্য current page save করা */
+  try { localStorage.setItem('du_last_page', pageId); } catch(e){}
   if(window.App && App.onNavigate){ App.onNavigate(pageId); }
 }
 function toggleSubmenu(id){
@@ -4979,12 +4995,12 @@ var App = (function(){
     var rows = buildStudentFeeHeadRows(s);
     var rowsHtml = rows.map(function(it, i){
       var checked = it.amount>0 ? 'checked' : '';
-      return '<label class="flex items-center justify-between gap-3 p-3 border border-line rounded-xl">'+
-        '<span class="flex items-center gap-3">'+
-        '<input type="checkbox" class="qf-item" id="qfchk_'+it.key+'" data-key="'+it.key+'" data-label="'+esc(it.label)+'" '+checked+' onchange="App.updateQfTotal()">'+
-        '<span class="font-semibold text-[13px]">'+(i+1)+'. '+esc(it.label)+'</span>'+
+      return '<label style="display:flex;flex-direction:column;gap:6px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;cursor:pointer;background:#fff;transition:border-color .15s,box-shadow .15s;" onmouseover="this.style.borderColor=\'var(--green-300)\'" onmouseout="this.style.borderColor=\'var(--line)\'">'+
+        '<span style="display:flex;align-items:center;gap:8px;">'+
+        '<input type="checkbox" class="qf-item" id="qfchk_'+it.key+'" data-key="'+it.key+'" data-label="'+esc(it.label)+'" '+checked+' onchange="App.updateQfTotal()" style="width:16px;height:16px;accent-color:var(--green-600);flex-shrink:0;">'+
+        '<span class="font-semibold text-[13px]" style="line-height:1.3;">'+(i+1)+'. '+esc(it.label)+'</span>'+
         '</span>'+
-        '<input type="number" class="input-field !w-28 text-right" id="qfamt_'+it.key+'" value="'+it.amount+'" min="0" oninput="App.updateQfTotal()">'+
+        '<input type="number" class="input-field text-right" id="qfamt_'+it.key+'" value="'+it.amount+'" min="0" oninput="App.updateQfTotal()" style="width:100%;font-size:13px;">'+
         '</label>';
     }).join('');
     result.innerHTML = '<div class="grid grid-cols-[1fr_1.6fr] gap-5">'+
@@ -5000,8 +5016,7 @@ var App = (function(){
       '</div></div>'+
       '<div class="card p-5"><p class="font-bold text-[15px] mb-4">ফি এর খাত নির্বাচন করুন ও পরিমাণ লিখুন</p>'+
       '<p class="text-[12px] text-muted mb-3">যে খাতে আদায় করতে চান তার পাশের বক্সে টিক দিন, প্রয়োজনে পরিমাণ পরিবর্তন করুন।</p>'+
-      '<div class="flex flex-col gap-2.5" id="qf-items">'+(rowsHtml || '<div class="empty-state">কোনো ফি খাত পাওয়া যায়নি</div>')+'</div>'+
-      '<div class="flex items-center justify-between mt-5 pt-4 border-t border-line"><span class="font-bold text-[15px]">সর্বমোট</span><span class="font-extrabold text-[22px]" id="qf-total" style="color:var(--green-700)">'+taka(0)+'</span></div>'+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" id="qf-items">'+(rowsHtml || '<div class="empty-state" style="grid-column:1/-1;">কোনো ফি খাত পাওয়া যায়নি</div>')+'<div style="grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-radius:13px;background:linear-gradient(120deg,var(--green-deep) 0%,var(--green-600) 100%);color:#fff;margin-top:2px;box-shadow:0 4px 14px rgba(15,42,29,.18);"><span style="font-weight:700;font-size:15px;">সর্বমোট</span><span style="font-weight:800;font-size:22px;letter-spacing:-.02em;" id="qf-total">'+taka(0)+'</span></div></div>'+
       '<div class="flex items-center gap-3 mt-5">'+
       '<button type="button" class="btn-primary" onclick="App.quickFeeCollect()">'+ICON_CHECK+'আদায় করুন</button>'+
       '<button type="button" class="btn-outline" onclick="App.quickFeePrintLast()">'+ICON_PRINT+'রিসিট প্রিন্ট</button>'+
@@ -5877,7 +5892,9 @@ var App = (function(){
   }
   function openTeacherEditPage(id){
     var t = findTeacher(id); if(!t) return;
-    navigateTo('teacher-add');
+    navigateTo('fee-config');
+    openFeeTab('teacher');
+    openTeacherSubTab('add');
     _tadEditId = id;
     var setV = function(eid,val){ var el=document.getElementById(eid); if(el) el.value = val||''; };
     setV('tad-name-bn', t.nameBn);
@@ -6226,76 +6243,257 @@ var App = (function(){
     toast('শিক্ষক বেতন ইতিহাস ডাউনলোড হচ্ছে');
   }
 
-  /* ---------------- Dashboard Renderer ---------------- */
-  function renderDashboard(){
-    var cardsWrap = document.getElementById('dash-stat-cards'); if(!cardsWrap) return;
-    var act = activeStudents();
-    var inact = state.students.filter(function(s){return s.status!=='active';});
-    var totalDue = act.reduce(function(a,s){return a+(s.dueBalance||0);},0);
-    var todayStr = new Date().toISOString().slice(0,10);
-    var todayCollected = (state.feeHistory||[]).filter(function(r){
-      return r.iso && String(r.iso).indexOf(todayStr)===0;
-    }).reduce(function(a,r){return a+(r.amount||0);},0);
-    var monthStr = new Date().toISOString().slice(0,7);
-    var monthCollected = (state.feeHistory||[]).filter(function(r){
-      return r.iso && String(r.iso).indexOf(monthStr)===0;
-    }).reduce(function(a,r){return a+(r.amount||0);},0);
-    var teacherCount = (state.teachers||[]).filter(function(t){return t.status!=='inactive';}).length;
-    var icStudent = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg>';
-    var icDue     = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 4.3L2.7 18a2 2 0 001.7 3h15.2a2 2 0 001.7-3L13.7 4.3a2 2 0 00-3.4 0z"/></svg>';
-    var icCol     = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>';
-    var icTeacher = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg>';
-    var cards = [
-      {label:'সক্রিয় শিক্ষার্থী', value:bn(act.length), sub:'নিষ্ক্রিয়: '+bn(inact.length), accent:'green', ic:icStudent},
-      {label:'মোট বকেয়া', value:taka(totalDue), sub:bn(act.filter(function(s){return (s.dueBalance||0)>0;}).length)+' জন শিক্ষার্থীর', accent:'red', ic:icDue},
-      {label:'এ মাসে আদায়', value:taka(monthCollected), sub:'আজ: '+taka(todayCollected), accent:'blue', ic:icCol},
-      {label:'মোট শিক্ষক', value:bn(teacherCount), sub:'বিভাগ: 4টি', accent:'amber', ic:icTeacher}
-    ];
-    cardsWrap.innerHTML = cards.map(function(c){
-      return '<div class="dash-stat accent-'+c.accent+'">'+
-        '<div class="ic">'+c.ic+'</div>'+
-        '<p class="lbl">'+esc(c.label)+'</p>'+
-        '<p class="val">'+c.value+'</p>'+
-        '<p class="sub">'+esc(c.sub)+'</p>'+
-      '</div>';
-    }).join('');
+  /* ---------------- Dashboard Renderer ---------------- */function renderDashboard(){
 
-    // recent receipts
-    var rec = (state.feeHistory||[]).slice(0,8);
-    var rb = document.getElementById('dash-recent-receipts');
-    if(rb){
-      rb.innerHTML = rec.length ? rec.map(function(r){
-        return '<tr><td class="font-mono">'+esc(r.receiptNo||'')+'</td><td>'+esc(r.studentName||'')+'</td><td>'+esc(r.purpose||'')+'</td><td class="text-right font-bold">'+taka(r.amount||0)+'</td><td>'+esc((r.date||'').slice(0,10))+'</td></tr>';
-      }).join('') : '<tr><td colspan="5"><div class="empty-state">এখনো কোনো ফি আদায় হয়নি</div></td></tr>';
+  var cardsWrap = document.getElementById('dash-stat-cards');
+  if(!cardsWrap) return;
+
+
+  var act = typeof activeStudents === "function" ? activeStudents() : [];
+
+  var inact = (state.students || []).filter(function(s){
+    return s.status !== 'active';
+  });
+
+
+  var totalDue = act.reduce(function(a,s){
+    return a + Number(s.dueBalance || 0);
+  },0);
+
+
+
+  var now = new Date();
+
+  var todayStr =
+    now.getFullYear()+"-"+
+    String(now.getMonth()+1).padStart(2,'0')+"-"+
+    String(now.getDate()).padStart(2,'0');
+
+
+  var monthStr =
+    now.getFullYear()+"-"+
+    String(now.getMonth()+1).padStart(2,'0');
+
+
+
+  var history = state.feeHistory || [];
+
+
+  var todayCollected = history.filter(function(r){
+
+    return String(r.iso || '').indexOf(todayStr) === 0;
+
+  }).reduce(function(a,r){
+
+    return a + Number(r.amount || 0);
+
+  },0);
+
+
+
+  var monthCollected = history.filter(function(r){
+
+    return String(r.iso || '').indexOf(monthStr) === 0;
+
+  }).reduce(function(a,r){
+
+    return a + Number(r.amount || 0);
+
+  },0);
+
+
+
+  var teacherCount =
+    (state.teachers || []).filter(function(t){
+      return t.status !== 'inactive';
+    }).length;
+
+
+
+  var icStudent =
+  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/></svg>';
+
+
+
+  var icDue =
+  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>';
+
+
+
+  var icCol =
+  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/></svg>';
+
+
+
+  var icTeacher =
+  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/></svg>';
+
+
+
+
+  var cards=[
+
+    {
+      label:'সক্রিয় শিক্ষার্থী',
+      value:bn(act.length),
+      sub:'নিষ্ক্রিয়: '+bn(inact.length),
+      accent:'green',
+      ic:icStudent
+    },
+
+    {
+      label:'মোট বকেয়া',
+      value:taka(totalDue),
+      sub:bn(act.length)+' জন শিক্ষার্থী',
+      accent:'red',
+      ic:icDue
+    },
+
+    {
+      label:'এ মাসে আদায়',
+      value:taka(monthCollected),
+      sub:'আজ: '+taka(todayCollected),
+      accent:'blue',
+      ic:icCol
+    },
+
+
+    {
+      label:'মোট শিক্ষক',
+      value:bn(teacherCount),
+      sub:'সকল বিভাগ',
+      accent:'amber',
+      ic:icTeacher
     }
 
-    // due summary
-    var ds = document.getElementById('dash-due-summary');
-    if(ds){
-      var feeDueCount = act.filter(function(s){return (s.dueBalance||0)>0;}).length;
-      var admDueList = act.filter(function(s){return (s.admissionDue||0)>0;});
-      var admDueAmt = admDueList.reduce(function(a,s){return a+(s.admissionDue||0);},0);
-      var tDue = (state.teachers||[]).filter(function(t){return t.status!=='inactive';}).map(function(t){return teacherDue(t);}).filter(function(d){return d>0;});
-      var tDueAmt = tDue.reduce(function(a,b){return a+b;},0);
-      ds.innerHTML =
-        '<div class="card p-3 flex items-center justify-between" style="background:#fff5f5"><div><p class="text-[11px] text-muted font-bold">মাসিক ফি বকেয়া</p><p class="text-[18px] font-extrabold" style="color:#C13F3C">'+taka(totalDue)+'</p></div><span class="badge badge-red">'+bn(feeDueCount)+' জন</span></div>'+
-        '<div class="card p-3 flex items-center justify-between"><div><p class="text-[11px] text-muted font-bold">ভর্তি ফি বকেয়া</p><p class="text-[18px] font-extrabold" style="color:#C13F3C">'+taka(admDueAmt)+'</p></div><span class="badge badge-red">'+bn(admDueList.length)+' জন</span></div>'+
-        '<div class="card p-3 flex items-center justify-between"><div><p class="text-[11px] text-muted font-bold">শিক্ষক বেতন বকেয়া</p><p class="text-[18px] font-extrabold" style="color:#C13F3C">'+taka(tDueAmt)+'</p></div><span class="badge badge-red">'+bn(tDue.length)+' জন</span></div>';
+  ];
+
+
+
+  cardsWrap.innerHTML = cards.map(function(c){
+
+    return (
+
+    '<div class="dash-stat accent-'+c.accent+'">'+
+
+    '<div class="ic">'+c.ic+'</div>'+
+
+    '<p class="lbl">'+esc(c.label)+'</p>'+
+
+    '<p class="val">'+c.value+'</p>'+
+
+    '<p class="sub">'+esc(c.sub)+'</p>'+
+
+    '</div>'
+
+    );
+
+  }).join('');
+
+
+
+
+  var rw=document.getElementById('dash-recent-receipts-wrap');
+
+
+  if(rw){
+
+
+    var rec=history.slice(0,8);
+
+
+
+    if(!rec.length){
+
+      rw.innerHTML =
+      '<div class="empty-state">এখনো কোনো ফি আদায় হয়নি</div>';
+
     }
 
-    // by dept
-    var dd = document.getElementById('dash-by-dept');
-    if(dd){
-      var depts = {};
-      act.forEach(function(s){ var k=s.dept||'অন্যান্য'; depts[k]=(depts[k]||0)+1; });
-      var total = act.length || 1;
-      dd.innerHTML = Object.keys(depts).map(function(k){
-        var c=depts[k]; var pct=Math.round(c*100/total);
-        return '<div><div class="flex items-center justify-between text-[12px] mb-1"><span class="font-semibold">'+esc(k)+' বিভাগ</span><span class="text-muted">'+bn(c)+' জন ('+bn(pct)+'%)</span></div><div style="background:var(--green-100);height:8px;border-radius:6px;overflow:hidden"><div style="width:'+pct+'%;height:100%;background:var(--green-700)"></div></div></div>';
-      }).join('') || '<div class="empty-state">কোনো শিক্ষার্থী নেই</div>';
+    else{
+
+
+      rw.innerHTML = rec.map(function(r){
+
+
+        return (
+
+        '<div style="display:flex;justify-content:space-between;padding:10px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:#fff">'+
+
+
+        '<div>'+
+
+        '<b>'+esc(r.studentName || '—')+'</b>'+
+
+        '<div style="font-size:12px;color:gray">'+
+
+        esc(r.feeName || r.purpose || '')+
+
+        '</div>'+
+
+        '</div>'+
+
+
+
+        '<div style="text-align:right">'+
+
+        '<strong>'+taka(r.amount || 0)+'</strong>'+
+
+        '<div style="font-size:11px;color:gray">'+
+
+        esc((r.date || r.iso || '').slice(0,10))+
+
+        '</div>'+
+
+        '</div>'+
+
+
+        '</div>'
+
+        );
+
+
+      }).join('');
+
     }
+
   }
 
+
+
+
+
+  var ds=document.getElementById('dash-due-summary');
+
+
+  if(ds){
+
+
+    var feeDueCount =
+    act.filter(function(s){
+      return Number(s.dueBalance||0)>0;
+    }).length;
+
+
+
+    ds.innerHTML =
+
+
+    '<div class="card p-3">'+
+
+    '<p>মাসিক ফি বকেয়া</p>'+
+
+    '<strong>'+taka(totalDue)+'</strong>'+
+
+    '<span>'+bn(feeDueCount)+' জন</span>'+
+
+    '</div>';
+
+  }
+
+
+
+}
   /* ---------------- Master render & navigation hook ---------------- */
   function renderAll(){
     populateAllClassFilters();
@@ -6346,7 +6544,6 @@ var App = (function(){
       case 'exam-collect': renderExamCollectTable(); break;
       case 'exam-due': renderExamDue(); break;
       case 'teacher-list': renderTeacherList(); break;
-      case 'teacher-add': resetTeacherAddForm(); var prev=document.getElementById('tad-id-preview'); if(prev) prev.placeholder='TC-'+state.nextTeacherSeq; break;
       case 'teacher-salary-history': renderTeacherSalaryHistory(); break;
       case 'teacher-salary-due': renderTeacherSalaryDue(); break;
       case 'teacher-salary': break;
@@ -6375,6 +6572,27 @@ var App = (function(){
     /* lazy render on first open */
     if(tab==='teacher') _renderCfgTeacherTable();
     if(tab==='chargeconfig') renderChargeConfig();
+  }
+  /* ── শিক্ষক ট্যাবের সাব-নেভিগেশন: বেতন নির্ধারণ ⇄ নতুন শিক্ষক নিয়োগ ── */
+  function openTeacherSubTab(ttab){
+    var subs = ['salary','add'];
+    subs.forEach(function(t){
+      var el = document.getElementById('ttab-'+t);
+      if(el) el.style.display = (t===ttab)?'':'none';
+    });
+    document.querySelectorAll('.charge-sub-tab[data-ttab]').forEach(function(btn){
+      btn.classList.toggle('active', btn.dataset.ttab===ttab);
+    });
+    if(ttab==='salary') _renderCfgTeacherTable();
+  }
+  /* "নতুন শিক্ষক যুক্ত করুন" বাটনে ক্লিক করলে ফি কনফিগারেশন → শিক্ষক → নতুন শিক্ষক নিয়োগ সাব-ট্যাবে নিয়ে যাবে */
+  function openTeacherAddNew(){
+    navigateTo('fee-config');
+    openFeeTab('teacher');
+    resetTeacherAddForm();
+    openTeacherSubTab('add');
+    var prev = document.getElementById('tad-id-preview');
+    if(prev) prev.placeholder = 'TC-'+state.nextTeacherSeq;
   }
   function renderFeeConfig(){
     /* পরীক্ষার তালিকা */
@@ -7180,6 +7398,7 @@ function _renderCfgProfileCards(){
     renderTeacherList: renderTeacherList, viewTeacher: viewTeacher, openAddTeacherModal: openAddTeacherModal, addTeacher: addTeacher,
     openEditTeacherModal: openEditTeacherModal, saveEditTeacher: saveEditTeacher, deleteTeacher: deleteTeacher,
     openTeacherEditPage: openTeacherEditPage,
+    openTeacherSubTab: openTeacherSubTab, openTeacherAddNew: openTeacherAddNew,
     previewTeacherPhoto: previewTeacherPhoto, calcTeacherAge: calcTeacherAge,
     resetTeacherAddForm: resetTeacherAddForm, submitTeacherAdd: submitTeacherAdd,
     teacherSalarySearch: teacherSalarySearch, payTeacherSalary: payTeacherSalary, teacherSalaryPrintLast: teacherSalaryPrintLast,
@@ -7211,7 +7430,15 @@ function _renderCfgProfileCards(){
   };
 })();
 
-document.addEventListener('DOMContentLoaded', function(){ App.renderAll(); });
+document.addEventListener('DOMContentLoaded', function(){
+  App.renderAll();
+  try {
+    var lastPage = localStorage.getItem('du_last_page');
+    if(lastPage && document.getElementById('page-'+lastPage)){
+      navigateTo(lastPage);
+    }
+  } catch(e){}
+});
 
 </script>
 </body>
