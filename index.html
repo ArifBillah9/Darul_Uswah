@@ -405,6 +405,33 @@
   .collect-all-btn .cab-amt{ font-size:17px; font-weight:800; white-space:nowrap; flex-shrink:0; }
   @media (max-width: 640px){ .due-grid{ grid-template-columns:1fr; } .profile-stats{ grid-template-columns:repeat(2,1fr); } }
 
+  /* ---- শিক্ষার্থী প্রোফাইল মডাল (সব তথ্য একসাথে) মোবাইল রেস্পন্সিভ ---- */
+  @media (max-width: 640px){
+    .app-modal-overlay{ padding:0; align-items:flex-end; }
+    .app-modal-box.modal-lg{ max-width:100%; width:100%; max-height:96vh; border-radius:18px 18px 0 0; }
+    .app-modal-head{ padding:14px 16px; border-radius:18px 18px 0 0; }
+    .app-modal-body{ padding:14px; }
+
+    .profile-head{ flex-direction:column; align-items:flex-start; text-align:left; padding:14px; gap:10px; }
+    .profile-head .ph-meta{ min-width:0; width:100%; }
+    .profile-head .ph-name{ font-size:16px; }
+    .profile-head .ph-quick{ width:100%; }
+    .profile-head .ph-quick .btn-icon{ flex:1; }
+
+    .profile-stats{ grid-template-columns:repeat(2,1fr) !important; gap:8px; }
+    .profile-stat .ps-val{ font-size:14px; }
+
+    .ptabs{ grid-template-columns:repeat(2,1fr); gap:6px; }
+    .ptab-btn{ font-size:11px; padding:9px 6px; }
+
+    .profile-info-grid{ grid-template-columns:1fr; gap:0 0; }
+
+    .app-modal-body .grid-cols-2{ grid-template-columns:1fr; }
+
+    .ptab-panel{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .ptab-panel .data-table{ min-width:520px; }
+  }
+
   /* ---- Global student search (top bar) ---- */
   .gsearch-wrap{ position:relative; }
   .gsearch-results{ position:absolute; top:calc(100% + 8px); left:0; width:340px; background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:0 18px 40px rgba(0,0,0,.14); max-height:360px; overflow-y:auto; z-index:200; display:none; }
