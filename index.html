@@ -308,7 +308,7 @@
     position:fixed!important;
     top:0;left:0;bottom:0;
     z-index:9999;
-    width:84vw!important;max-width:300px;
+    width:100vw!important;max-width:100vw!important;
     transform:translateX(-110%);
     transition:transform .32s cubic-bezier(.4,0,.2,1), box-shadow .32s ease;
     box-shadow:none;
@@ -360,57 +360,49 @@
   .sidebar-mobile-header{
     display:flex!important;align-items:stretch;justify-content:space-between;
     padding:0;border-bottom:none;margin-bottom:0;
-    background:#0F2A1D;
+    background:#ffffff;
     position:sticky;top:0;z-index:2;
-    min-height:72px;
+    min-height:62px;
     flex-shrink:0;
   }
-  /* উপরের গ্রেডিয়েন্ট লাইন বাদ দেওয়া হয়েছে */
-  /* নিচে বিভাজক */
+  /* নিচে হালকা বিভাজক */
   .sidebar-mobile-header::after{
     content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
-    background:linear-gradient(90deg,rgba(143,195,166,.4),rgba(143,195,166,.1) 70%,transparent);
+    background:#ebebeb;
   }
   .sidebar-mobile-header-inner{
-    display:flex;align-items:center;gap:12px;
-    padding:16px 14px 14px;flex:1;min-width:0;
+    display:flex;align-items:center;justify-content:center;
+    padding:0 14px;flex:1;min-width:0;
   }
   .smh-logo-wrap{
-    width:42px;height:42px;border-radius:0;flex-shrink:0;
-    background:linear-gradient(135deg,#2C6B47 0%,#3E8A5F 100%);
-    display:flex;align-items:center;justify-content:center;
-    color:#fff;font-weight:900;font-size:16px;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.15), 0 2px 8px rgba(0,0,0,.3);
-    position:relative;
+    display:none;
   }
-  .smh-logo-wrap::after{
-    content:'';position:absolute;bottom:-2px;right:-2px;
-    width:10px;height:10px;border-radius:50%;
-    background:#3E8A5F;border:2px solid #0F2A1D;
-  }
-  .smh-text{flex:1;min-width:0;}
+  .smh-text{flex:1;min-width:0;text-align:center;}
   .sidebar-mobile-header .smh-title{
-    font-size:13.5px;font-weight:800;color:#fff;
-    line-height:1.25;display:block;letter-spacing:-.2px;
+    font-size:15px;font-weight:800;color:#1a1a1a;
+    line-height:1.15;display:block;letter-spacing:.06em;text-transform:uppercase;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   }
   .smh-sub{
-    font-size:9px;color:rgba(255,255,255,.45);font-weight:700;
-    letter-spacing:.6px;text-transform:uppercase;margin-top:3px;display:block;
+    font-size:8.5px;color:#8a8a8a;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;margin-top:1px;display:block;
+    white-space:nowrap;
   }
   .sidebar-close-btn{
     width:52px;border-radius:0;
-    background:transparent;border:none;border-left:1px solid rgba(255,255,255,.07);
+    background:transparent;border:none;border-left:1px solid #ebebeb;
     display:flex;align-items:center;justify-content:center;
-    cursor:pointer;color:rgba(255,255,255,.5);
+    cursor:pointer;color:#1a1a1a;
     transition:background .15s,color .15s;
     flex-shrink:0;
   }
-  .sidebar-close-btn:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.85)}
-  .sidebar-close-btn:active{background:rgba(0,0,0,.2);color:#fff}
+  .sidebar-close-btn:hover{background:rgba(0,0,0,.04);color:#1a1a1a}
+  .sidebar-close-btn:active{background:rgba(0,0,0,.08);color:#1a1a1a}
   .sidebar-close-btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;}
 
   /* Sidebar inner layout */
-  aside.sidebar .flex.items-center.gap-2.px-1.mb-7{display:none!important}
+  aside.sidebar .sidebar-profile,
+  aside.sidebar .sidebar-divider{display:none!important}
   aside.sidebar{padding:0!important;}
 
   /* nav-link */
@@ -420,6 +412,8 @@
     border-radius:0!important;
     margin-bottom:1px!important;
     transition:background .12s ease,color .12s ease;
+    text-align:left!important;
+    justify-content:flex-start!important;
   }
   .nav-link.active-link{
     background:linear-gradient(90deg,rgba(62,138,95,.13) 0%,rgba(143,195,166,.05) 100%)!important;
@@ -436,6 +430,8 @@
   .submenu-link{
     padding:9px 14px!important;border-radius:0!important;
     font-size:12.5px!important;
+    text-align:left!important;
+    justify-content:flex-start!important;
   }
   .submenu-link.active-link{
     border-radius:0!important;
@@ -556,8 +552,11 @@
      ══════════════════════════════════════════════ */
   .sub-nav-bar.fee-cfg-tab-bar,
   .fee-cfg-tab-bar {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
     gap: 5px !important;
     padding: 6px !important;
     margin: 10px 0 6px !important;
@@ -573,25 +572,25 @@
   .fee-cfg-tab-bar .fee-cfg-tab {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-    white-space: normal !important;
-    word-break: keep-all !important;
-    padding: 8px 6px !important;
-    font-size: 11px !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    padding: 8px 12px !important;
+    font-size: 12px !important;
     font-weight: 700 !important;
     line-height: 1.35 !important;
     border-radius: 9px !important;
-    min-height: 38px !important;
+    min-height: 36px !important;
     height: auto !important;
     border: none !important;
     color: #3E7A58 !important;
     background: rgba(255,255,255,.6) !important;
     transition: background .15s, color .15s, box-shadow .15s, transform .1s !important;
-    gap: 4px !important;
-    flex-direction: column !important;
+    gap: 6px !important;
+    flex-direction: row !important;
     cursor: pointer !important;
     box-shadow: 0 1px 2px rgba(0,0,0,.06) !important;
+    flex: 0 0 auto !important;
   }
   .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab:active,
   .fee-cfg-tab-bar .fee-cfg-tab:active {
@@ -616,18 +615,6 @@
     width: 14px !important;
     height: 14px !important;
     flex-shrink: 0 !important;
-  }
-
-  /* শেষ রো-তে কম ট্যাব থাকলে center করো */
-  .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab:last-child:nth-child(3n - 1),
-  .fee-cfg-tab-bar .fee-cfg-tab:last-child:nth-child(3n - 1) {
-    grid-column: 2 / span 1 !important;
-  }
-  .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab:last-child:nth-child(3n - 2):not(:first-child),
-  .fee-cfg-tab-bar .fee-cfg-tab:last-child:nth-child(3n - 2):not(:first-child) {
-    grid-column: 1 / span 3 !important;
-    max-width: 50% !important;
-    margin: 0 auto !important;
   }
 
   /* fee-config sticky strip */
@@ -1604,12 +1591,12 @@
     border-color:var(--green-600,#2f8f5b);
   }
   .charge-sub-tab.active{
-    background:var(--green-700); color:#fff;
-    border-color:var(--green-700);
-    box-shadow:0 4px 12px -3px rgba(16,80,48,.45);
-    transform:translateY(-1px);
+    background:#e8ebe9; color:#2d4a38;
+    border-color:#c8d5cd;
+    box-shadow:none;
+    transform:none;
   }
-  .charge-sub-tab.active svg{ stroke:#fff; opacity:1; }
+  .charge-sub-tab.active svg{ stroke:#2d4a38; opacity:.85; }
 
   /* মোবাইল: সব ট্যাব একসাথে র‍্যাপ হয়ে দেখানো (গ্রিড স্টাইল) */
   @media (max-width:640px){
@@ -1666,6 +1653,226 @@
   }
   @media (max-width:480px){
     .fdis-reason-grid{ grid-template-columns:1fr 1fr!important; }
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     আয়-ব্যয় ব্যবস্থাপনা — মোবাইল মোডে সুন্দর ডিজাইন
+     (ie-nav-tabs সাব-নেভ + টুলবার রি-ডিজাইন)
+     ══════════════════════════════════════════════════════════════ */
+  @media (max-width:900px){
+    /* সাব-নেভ ট্যাব বার: ৪টি ট্যাব — সুন্দর ২x২ গ্রিড পিল ডিজাইন */
+    .ie-nav-tabs.fee-cfg-tab-bar{
+      display:grid!important;
+      grid-template-columns:repeat(2,1fr)!important;
+      gap:6px!important;
+      padding:6px!important;
+      margin:8px 0 14px!important;
+      border-radius:14px!important;
+      border:1.5px solid rgba(62,138,95,.16)!important;
+      background:#f0f7f3!important;
+      box-shadow:0 2px 8px rgba(62,138,95,.08), inset 0 1px 0 rgba(255,255,255,.8)!important;
+      overflow:visible!important;
+    }
+    .ie-nav-tabs.fee-cfg-tab-bar .ie-tab{
+      display:flex!important;
+      flex-direction:column!important;
+      align-items:center!important;
+      justify-content:center!important;
+      text-align:center!important;
+      gap:5px!important;
+      padding:10px 6px!important;
+      font-size:11.5px!important;
+      line-height:1.3!important;
+      min-height:54px!important;
+      height:auto!important;
+      border-radius:10px!important;
+      white-space:normal!important;
+      word-break:keep-all!important;
+      border:none!important;
+      background:rgba(255,255,255,.65)!important;
+      box-shadow:0 1px 2px rgba(0,0,0,.06)!important;
+      transition:background .15s, box-shadow .15s, transform .1s!important;
+    }
+    .ie-nav-tabs.fee-cfg-tab-bar .ie-tab svg{ width:16px!important; height:16px!important; flex-shrink:0!important; }
+    .ie-nav-tabs.fee-cfg-tab-bar .ie-tab:active{ transform:scale(.96)!important; box-shadow:none!important; }
+    .ie-nav-tabs.fee-cfg-tab-bar .ie-tab.active{
+      background:linear-gradient(135deg,#1a5c36 0%,#0F2A1D 100%)!important;
+      color:#fff!important;
+      box-shadow:0 3px 10px rgba(15,42,29,.28)!important;
+    }
+    .ie-nav-tabs.fee-cfg-tab-bar .ie-tab.active svg{ stroke:#fff!important; opacity:1!important; }
+  }
+
+  /* টুলবার (নতুন আয়/ব্যয় বাটন, খুঁজুন, ফিল্টার, মোট ব্যাজ) — মোবাইলে গুছানো গ্রিড */
+  @media (max-width:640px){
+    .ie-toolbar{
+      display:grid!important;
+      grid-template-columns:1fr 1fr!important;
+      gap:8px!important;
+      margin:0 0 14px!important;
+      align-items:stretch!important;
+    }
+    .ie-toolbar > button,
+    .ie-toolbar > input.input-field,
+    .ie-toolbar > span,
+    .ie-toolbar > select#income-cat-filter,
+    .ie-toolbar > select#expense-cat-filter,
+    .ie-toolbar > select#ih-cat-filter{
+      grid-column:1 / -1!important;
+      width:100%!important;
+      max-width:100%!important;
+      margin-left:0!important;
+    }
+    .ie-toolbar > select.input-field{
+      width:100%!important;
+      max-width:100%!important;
+    }
+    .ie-toolbar > button{
+      justify-content:center!important;
+      display:flex!important;
+      align-items:center!important;
+      gap:6px!important;
+    }
+    .ie-toolbar > span{
+      text-align:center!important;
+      background:#eef6f1!important;
+      border-radius:10px!important;
+      padding:9px 0!important;
+      font-size:13px!important;
+    }
+  }
+
+  /* একদম সরু স্ক্রিনে ফন্ট আরেকটু কমপ্যাক্ট, যাতে টেক্স এক লাইনেই থাকে */
+  @media (max-width:380px){
+    .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab,
+    .fee-cfg-tab-bar .fee-cfg-tab{
+      font-size:10.3px!important;
+      padding:7px 4px!important;
+    }
+    .ie-nav-tabs.fee-cfg-tab-bar .ie-tab{
+      font-size:10.8px!important;
+    }
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     বিভাগ + শ্রেণি ড্রপডাউন — মোবাইলে সবসময় পাশাপাশি দেখাবে
+     (ডেস্কটপে কোনো প্রভাব নেই — display:contents দিয়ে স্বচ্ছ থাকে)
+     ══════════════════════════════════════════════════════════════ */
+  .dept-cls-row{ display:contents; }
+  @media (max-width:640px){
+    .dept-cls-row{
+      display:grid!important;
+      grid-template-columns:1fr 1fr!important;
+      gap:8px!important;
+      grid-column:1 / -1!important;
+      flex:1 1 100%!important;
+      width:100%!important;
+    }
+    .dept-cls-row > div{ min-width:0!important; }
+    .dept-cls-row > div select,
+    .dept-cls-row > div input{
+      width:100%!important;
+      max-width:100%!important;
+    }
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     সাইডবার — প্রোফেশনাল রি-ডিজাইন (প্রোফাইল হেডার, কালারফুল আইকন,
+     গ্র্যাডিয়েন্ট অ্যাক্টিভ পিল)
+     ══════════════════════════════════════════════════════════════ */
+  aside.sidebar{
+    box-shadow:1px 0 0 var(--line), 6px 0 28px -10px rgba(16,24,40,.06);
+  }
+
+  /* প্রোফাইল হেডার */
+  .sidebar-profile{
+    display:flex;align-items:center;gap:11px;
+    padding:13px 12px;margin:0 0 6px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#F3F8F5 0%,#FAFAF9 100%);
+    border:1px solid rgba(62,138,95,.12);
+  }
+  .sp-avatar{
+    width:44px;height:44px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(145deg,#3E8A5F,#0F2A1D);
+    color:#fff;font-weight:800;font-size:15px;
+    box-shadow:0 4px 10px rgba(15,42,29,.25);
+  }
+  .sp-text{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .sp-greet{
+    font-size:11.5px;font-weight:700;color:var(--muted);
+    display:flex;align-items:center;gap:4px;
+  }
+  .sp-wave{display:inline-block;animation:sp-wave-anim 2.4s ease-in-out infinite;transform-origin:70% 70%;}
+  @keyframes sp-wave-anim{
+    0%,60%,100%{transform:rotate(0deg)}
+    10%{transform:rotate(14deg)}
+    20%{transform:rotate(-8deg)}
+    30%{transform:rotate(14deg)}
+    40%{transform:rotate(-4deg)}
+  }
+  .sp-name{
+    font-size:14px;font-weight:800;color:var(--ink);
+    line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .sidebar-divider{height:1px;background:var(--line);margin:4px 4px 14px;}
+
+  /* মেনু লেবেল + কাউন্ট ব্যাজ */
+  .sidebar-menu-label{
+    font-size:11px;font-weight:800;letter-spacing:.08em;
+    color:var(--muted);text-transform:uppercase;
+    display:flex;align-items:center;gap:6px;
+    padding:0 12px;margin-bottom:8px;
+  }
+  .sml-count{
+    background:var(--green-100);color:var(--green-700);
+    font-size:10.5px;font-weight:800;
+    width:18px;height:18px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  /* মেনু আইটেম আইকন চিপ */
+  .nl-icon{
+    width:32px;height:32px;border-radius:10px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .15s ease,color .15s ease;
+  }
+  .nl-icon svg{width:17px;height:17px;}
+  [data-hub-link="dashboard"] .nl-icon{ background:#EAF2FF; color:#3B6FE0; }
+  [data-hub-link="hub-student"] .nl-icon{ background:#FFF1E6; color:#E2792F; }
+  [data-hub-link="hub-finance"] .nl-icon{ background:#EAFBF1; color:#1F9D5C; }
+  [data-hub-link="hub-teacher"] .nl-icon{ background:#F3EEFF; color:#7C5CD9; }
+  [data-hub-link="hub-income"] .nl-icon{ background:#FFF0F0; color:#E0524B; }
+  [data-hub-link="fee-config"] .nl-icon{ background:#FFF8E1; color:#D69A1F; }
+
+  /* অ্যাক্টিভ মেনু আইটেম — সলিড গ্র্যাডিয়েন্ট পিল (ডেস্কটপ + মোবাইল ড্রয়ার) */
+  .nav-link.active-link{
+    background:linear-gradient(135deg,#1a5c36 0%,#0F2A1D 100%)!important;
+    color:#fff!important;
+    box-shadow:0 6px 16px -4px rgba(15,42,29,.4)!important;
+  }
+  .nav-link.active-link::before{ content:none!important; }
+  .nav-link.active-link .nl-icon{
+    background:rgba(255,255,255,.16)!important;
+    color:#fff!important;
+  }
+  .nav-link:not(.active-link):hover .nl-icon{
+    filter:brightness(.96);
+  }
+
+  /* মোবাইল ড্রয়ারেও পিল আকৃতি বজায় থাকবে */
+  @media (max-width:900px){
+    .nav-link{
+      border-radius:12px!important;
+      margin:2px 8px!important;
+    }
+    .submenu-link.active-link{
+      border-left:none!important;
+      border-radius:10px!important;
+      background:var(--green-100)!important;
+      color:var(--green-700)!important;
+    }
   }
 
 </style>
@@ -1751,7 +1958,7 @@
     <div class="smh-logo-wrap">জা</div>
     <div class="smh-text">
       <span class="smh-title">জামি'আ দারুল উসওয়াহ</span>
-      <span class="smh-sub">ব্যবস্থাপনা সিস্টেম</span>
+      <span class="smh-sub">ম্যানেজমেন্ট সিস্টেম</span>
     </div>
   </div>
   <button class="sidebar-close-btn" type="button" aria-label="close menu" onclick="document.body.classList.remove('nav-open')">
@@ -1759,37 +1966,39 @@
   </button>
 </div>
 <!-- Logo -->
-<div class="flex items-center gap-2 px-1 mb-7">
-<div class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style="background:var(--green-700)">
-<svg fill="none" height="18" viewBox="0 0 24 24" width="18"><path d="M12 2C7 6 4 10 4 14a8 8 0 0016 0c0-4-3-8-8-12z" fill="#fff"></path></svg>
+<div class="sidebar-profile">
+<span class="sp-avatar">জা</span>
+<div class="sp-text">
+<span class="sp-greet">শুভ দিন <span class="sp-wave">👋</span></span>
+<span class="sp-name">জামি'আ দারুল উসওয়াহ</span>
 </div>
-<span class="font-extrabold text-[15px] tracking-tight leading-tight">জামি'আ দারুল উসওয়াহ</span>
 </div>
+<div class="sidebar-divider"></div>
 <!-- MENU -->
-<p class="text-[11px] font-bold tracking-widest text-muted px-3 mb-2">MENU</p>
+<p class="sidebar-menu-label">মেনু <span class="sml-count">৬</span></p>
 <nav class="flex flex-col gap-1 mb-7">
-<a class="nav-link active-link relative flex items-center gap-3 px-3 py-2.5 rounded-xl font-semibold text-[13px]" data-hub-link="dashboard" href="#" onclick="navigateTo('dashboard',this);return false;">
-<svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><rect height="9" rx="1.5" width="7" x="3" y="3"></rect><rect height="5" rx="1.5" width="7" x="14" y="3"></rect><rect height="9" rx="1.5" width="7" x="14" y="12"></rect><rect height="5" rx="1.5" width="7" x="3" y="16"></rect></svg>
+<a class="nav-link relative flex items-center gap-3 px-3 py-2.5 rounded-xl font-semibold text-[13px]" data-hub-link="dashboard" href="#" onclick="navigateTo('dashboard',this);return false;">
+<span class="nl-icon"><svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><rect height="9" rx="1.5" width="7" x="3" y="3"></rect><rect height="5" rx="1.5" width="7" x="14" y="3"></rect><rect height="9" rx="1.5" width="7" x="14" y="12"></rect><rect height="5" rx="1.5" width="7" x="3" y="16"></rect></svg></span>
         Dashboard
       </a>
 <a class="nav-link relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-muted hover:bg-gray-50 font-semibold text-[13px]" data-hub-link="hub-student" href="#" onclick="navigateTo('hub-student',this);return false;">
-<svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"></path><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"></path></svg>
+<span class="nl-icon"><svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"></path><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"></path></svg></span>
         শিক্ষার্থী ব্যবস্থাপনা
       </a>
 <a class="nav-link relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-muted hover:bg-gray-50 font-semibold text-[13px]" data-hub-link="hub-finance" href="#" onclick="navigateTo('hub-finance',this);return false;">
-<svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1.1 3 2.5-1.3 2.2-3 2.5c-1.7.3-3 1.1-3 2.5s1.3 2.5 3 2.5 3-1.1 3-2.5"></path></svg>
+<span class="nl-icon"><svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1.1 3 2.5-1.3 2.2-3 2.5c-1.7.3-3 1.1-3 2.5s1.3 2.5 3 2.5 3-1.1 3-2.5"></path></svg></span>
         আর্থিক ব্যবস্থাপনা
       </a>
 <a class="nav-link relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-muted hover:bg-gray-50 font-semibold text-[13px]" data-hub-link="hub-teacher" href="#" onclick="navigateTo('hub-teacher',this);return false;">
-<svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"></path><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"></path></svg>
+<span class="nl-icon"><svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"></path><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"></path></svg></span>
         শিক্ষক ব্যবস্থাপনা
       </a>
 <a class="nav-link relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-muted hover:bg-gray-50 font-semibold text-[13px]" data-hub-link="hub-income" href="#" onclick="navigateTo('hub-income',this);return false;">
-<svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg>
+<span class="nl-icon"><svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg></span>
         আয়-ব্যয় ব্যবস্থাপনা
       </a>
 <a class="nav-link relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-muted hover:bg-gray-50 font-semibold text-[13px]" data-hub-link="fee-config" href="#" onclick="navigateTo('fee-config',this);return false;" style="border-top:1px solid var(--line);margin-top:6px;padding-top:14px">
-<svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M12 2v2M12 20v2M2 12h2M20 12h2"></path></svg>
+<span class="nl-icon"><svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M12 2v2M12 20v2M2 12h2M20 12h2"></path></svg></span>
         ফি কনফিগারেশন
         <span style="background:#D69A1F;color:#fff;font-size:9px;padding:1px 5px;border-radius:8px;margin-left:auto;font-weight:700">নতুন</span>
 </a>
@@ -1841,12 +2050,12 @@
 <p class="text-[13px] text-muted mt-1">ভর্তি, তালিকা, আইডি কার্ড, রোল ও দাখেলা বিন্যাস, ফলাফল দেখা — শিক্ষার্থী সংক্রান্ত সব কাজ এখান থেকে করুন</p>
 </div>
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-student" style="margin:6px 0 0">
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="admission" onclick="navigateTo('admission')" type="button">নতুন ভর্তি</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">শিক্ষার্থী প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="id-card" onclick="navigateTo('id-card')" type="button">আইডি কার্ড</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা বিন্যাস</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-results" onclick="navigateTo('student-results')" type="button">ফলাফল দেখা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় শিক্ষার্থী</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় তালিকা</button>
 </div>
 <div class="hub-grid">
 <a class="hub-card" href="#" onclick="navigateTo('admission');return false;">
@@ -1892,7 +2101,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-ledger" onclick="navigateTo('student-ledger')" type="button">SMS পাঠান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="hub-grid"><a class="hub-card" href="#" onclick="navigateTo('boarding');return false;">
@@ -2006,7 +2215,7 @@
 <button class="ie-tab sub-nav-tab" data-sub-page="ie-report" onclick="navigateTo('ie-report')" type="button"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="15"><path d="M3 3v18h18"></path><path d="M7 14l4-4 3 3 5-6"></path></svg>প্রতিবেদন</button>
 <button class="ie-tab sub-nav-tab" data-sub-page="income-history" onclick="navigateTo('income-history')" type="button"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="15"><path d="M3 3v5h5"></path><path d="M3.05 13A9 9 0 106 5.3L3 8"></path><path d="M12 7v5l4 2"></path></svg>আদায়ের ইতিহাস</button>
 </div>
-<div class="flex flex-wrap items-center gap-3 mb-4 mt-4">
+<div class="flex flex-wrap items-center gap-3 mb-4 mt-4 ie-toolbar">
 <button class="btn-ie-income" onclick="App.openAddIEModal('income')" type="button">+ নতুন আয় যুক্ত করুন</button>
 <input class="input-field" id="income-search" oninput="App.renderIncomeList()" placeholder="খুঁজুন..." style="max-width:200px" type="text">
 <select class="input-field" id="income-cat-filter" onchange="App.renderIncomeList()" style="max-width:200px">
@@ -2046,7 +2255,7 @@
 <button class="ie-tab sub-nav-tab" data-sub-page="ie-report" onclick="navigateTo('ie-report')" type="button"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="15"><path d="M3 3v18h18"></path><path d="M7 14l4-4 3 3 5-6"></path></svg>প্রতিবেদন</button>
 <button class="ie-tab sub-nav-tab" data-sub-page="income-history" onclick="navigateTo('income-history')" type="button"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="15"><path d="M3 3v5h5"></path><path d="M3.05 13A9 9 0 106 5.3L3 8"></path><path d="M12 7v5l4 2"></path></svg>আদায়ের ইতিহাস</button>
 </div>
-<div class="flex flex-wrap items-center gap-3 mb-4 mt-4">
+<div class="flex flex-wrap items-center gap-3 mb-4 mt-4 ie-toolbar">
 <button class="btn-ie-expense" onclick="App.openAddIEModal('expense')" type="button">+ নতুন ব্যয় যুক্ত করুন</button>
 <input class="input-field" id="expense-search" oninput="App.renderExpenseList()" placeholder="খুঁজুন..." style="max-width:200px" type="text">
 <select class="input-field" id="expense-cat-filter" onchange="App.renderExpenseList()" style="max-width:200px">
@@ -2087,7 +2296,7 @@
 <button class="ie-tab sub-nav-tab active" data-sub-page="ie-report" onclick="navigateTo('ie-report')" type="button"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="15"><path d="M3 3v18h18"></path><path d="M7 14l4-4 3 3 5-6"></path></svg>প্রতিবেদন</button>
 <button class="ie-tab sub-nav-tab" data-sub-page="income-history" onclick="navigateTo('income-history')" type="button"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="15"><path d="M3 3v5h5"></path><path d="M3.05 13A9 9 0 106 5.3L3 8"></path><path d="M12 7v5l4 2"></path></svg>আদায়ের ইতিহাস</button>
 </div>
-<div class="flex flex-wrap items-center gap-3 mb-4 mt-4">
+<div class="flex flex-wrap items-center gap-3 mb-4 mt-4 ie-toolbar">
 <select class="input-field" id="ier-month-filter" onchange="App.renderIEReport()" style="max-width:150px">
 <option value="">সকল মাস</option>
 <option>জানুয়ারি</option><option>ফেব্রুয়ারি</option><option>মার্চ</option>
@@ -2112,7 +2321,7 @@
 <button class="ie-tab sub-nav-tab" data-sub-page="ie-report" onclick="navigateTo('ie-report')" type="button"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="15"><path d="M3 3v18h18"></path><path d="M7 14l4-4 3 3 5-6"></path></svg>প্রতিবেদন</button>
 <button class="ie-tab sub-nav-tab active" data-sub-page="income-history" onclick="navigateTo('income-history')" type="button"><svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="15"><path d="M3 3v5h5"></path><path d="M3.05 13A9 9 0 106 5.3L3 8"></path><path d="M12 7v5l4 2"></path></svg>আদায়ের ইতিহাস</button>
 </div>
-<div class="flex flex-wrap items-center gap-3 mb-4 mt-4">
+<div class="flex flex-wrap items-center gap-3 mb-4 mt-4 ie-toolbar">
 <input class="input-field" id="ih-search" oninput="App.renderIncomeHistory()" placeholder="নাম, খাত বা রশিদ নং দিয়ে খুঁজুন..." style="max-width:240px" type="text">
 <select class="input-field" id="ih-cat-filter" onchange="App.renderIncomeHistory()" style="max-width:200px">
 <option value="">সকল খাত</option>
@@ -2167,8 +2376,10 @@
 <div class="card p-5 mb-5">
 <div class="grid grid-cols-3 gap-3.5">
 <div><label class="field-label">পরীক্ষা নির্বাচন করুন</label><select class="input-field" id="rsub-exam" onchange="App.onRsubExamChange()"></select></div>
+<div class="dept-cls-row">
 <div><label class="field-label">বিভাগ</label><select class="input-field" id="rsub-dept" onchange="App.onRsubClassChange()"></select></div>
 <div><label class="field-label">শ্রেণি</label><select class="input-field" id="rsub-cls" onchange="App.onRsubClsPicked()"></select></div>
+</div>
 </div>
 </div>
 <div class="card p-5">
@@ -2204,8 +2415,10 @@
 <div class="card p-5 mb-5">
 <div class="grid grid-cols-4 gap-3.5">
 <div><label class="field-label">পরীক্ষা নির্বাচন করুন</label><select class="input-field" id="rent-exam" onchange="App.renderResultEntryTable()"></select></div>
+<div class="dept-cls-row">
 <div><label class="field-label">বিভাগ</label><select class="input-field" id="rent-dept" onchange="App.onRentDeptChange()"></select></div>
 <div><label class="field-label">শ্রেণি নির্বাচন করুন</label><select class="input-field" id="rent-cls" onchange="App.renderResultEntryTable()"></select></div>
+</div>
 <div class="flex items-end"><button class="btn-primary !w-auto" onclick="App.saveResultEntry()" type="button">নম্বর সংরক্ষণ করুন</button></div>
 </div>
 </div>
@@ -2240,8 +2453,10 @@
 <div class="card p-5 mb-5">
 <div class="grid grid-cols-4 gap-3.5">
 <div><label class="field-label">পরীক্ষা নির্বাচন করুন</label><select class="input-field" id="rsheet-exam" onchange="App.renderResultSheetTable()"></select></div>
+<div class="dept-cls-row">
 <div><label class="field-label">বিভাগ</label><select class="input-field" id="rsheet-dept" onchange="App.onRsheetDeptChange()"></select></div>
 <div><label class="field-label">শ্রেণি নির্বাচন করুন</label><select class="input-field" id="rsheet-cls" onchange="App.renderResultSheetTable()"></select></div>
+</div>
 <div class="flex items-end"><button class="btn-primary !w-auto" onclick="App.printAllResultSheets()" type="button">সকল শিক্ষার্থীর শিট প্রিন্ট করুন</button></div>
 </div>
 </div>
@@ -2255,12 +2470,12 @@
 <!-- ============ শিক্ষার্থীদের ফলাফল দেখা (বিভাগ ভিত্তিক) ============ -->
 <section class="page-section" data-hub="hub-student" id="page-student-results">
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-student" style="margin:6px 0 0">
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="admission" onclick="navigateTo('admission')" type="button">নতুন ভর্তি</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">শিক্ষার্থী প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="id-card" onclick="navigateTo('id-card')" type="button">আইডি কার্ড</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা বিন্যাস</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-results" onclick="navigateTo('student-results')" type="button">ফলাফল দেখা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় শিক্ষার্থী</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় তালিকা</button>
 </div>
 <div class="module-header">
 <div>
@@ -2279,7 +2494,7 @@
 </div>
 <div id="srlt-content"></div>
 </section>
-<section class="page-section active" id="page-dashboard">
+<section class="page-section" id="page-dashboard">
 <!-- Hero header -->
 <div class="dash-hero mb-6 flex items-start justify-between gap-4 flex-wrap">
 <div>
@@ -2418,13 +2633,13 @@
 </section>
 <section class="page-section" data-hub="hub-student" id="page-admission">
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-student" style="margin:6px 0 0">
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="admission" onclick="navigateTo('admission')" type="button">নতুন ভর্তি</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">শিক্ষার্থী প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="id-card" onclick="navigateTo('id-card')" type="button">আইডি কার্ড</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা বিন্যাস</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-results" onclick="navigateTo('student-results')" type="button">ফলাফল দেখা</button>
 
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় শিক্ষার্থী</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় তালিকা</button>
 </div>
 <div class="module-header">
 <div>
@@ -2541,7 +2756,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-ledger" onclick="navigateTo('student-ledger')" type="button">SMS পাঠান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="module-header">
@@ -2567,13 +2782,13 @@
 </section>
 <section class="page-section" data-hub="hub-student" id="page-student-list">
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-student" style="margin:6px 0 0">
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="admission" onclick="navigateTo('admission')" type="button">নতুন ভর্তি</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">শিক্ষার্থী প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="id-card" onclick="navigateTo('id-card')" type="button">আইডি কার্ড</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা বিন্যাস</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-results" onclick="navigateTo('student-results')" type="button">ফলাফল দেখা</button>
 
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় শিক্ষার্থী</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় তালিকা</button>
 </div>
 <div class="module-header">
 <div>
@@ -2598,13 +2813,13 @@
 </section>
 <section class="page-section" data-hub="hub-student" id="page-id-card">
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-student" style="margin:6px 0 0">
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="admission" onclick="navigateTo('admission')" type="button">নতুন ভর্তি</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">শিক্ষার্থী প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="id-card" onclick="navigateTo('id-card')" type="button">আইডি কার্ড</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা বিন্যাস</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-results" onclick="navigateTo('student-results')" type="button">ফলাফল দেখা</button>
 
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় শিক্ষার্থী</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় তালিকা</button>
 </div>
 <div class="module-header">
 <div>
@@ -2624,13 +2839,13 @@
 </section>
 <section class="page-section" data-hub="hub-student" id="page-inactive">
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-student" style="margin:6px 0 0">
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="admission" onclick="navigateTo('admission')" type="button">নতুন ভর্তি</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">শিক্ষার্থী প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="id-card" onclick="navigateTo('id-card')" type="button">আইডি কার্ড</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা বিন্যাস</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-results" onclick="navigateTo('student-results')" type="button">ফলাফল দেখা</button>
 
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় শিক্ষার্থী</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় তালিকা</button>
 </div>
 <div class="module-header">
 <div>
@@ -2655,12 +2870,12 @@
 </section>
 <section class="page-section" data-hub="hub-student" id="page-roll">
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-student" style="margin:6px 0 0">
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="admission" onclick="navigateTo('admission')" type="button">নতুন ভর্তি</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-list" onclick="navigateTo('student-list')" type="button">শিক্ষার্থী প্রোফাইল ও তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="id-card" onclick="navigateTo('id-card')" type="button">আইডি কার্ড</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা বিন্যাস</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="roll" onclick="navigateTo('roll')" type="button">রোল ও দাখেলা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-results" onclick="navigateTo('student-results')" type="button">ফলাফল দেখা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় শিক্ষার্থী</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="inactive" onclick="navigateTo('inactive')" type="button">নিষ্ক্রিয় তালিকা</button>
 </div>
 <div class="module-header">
 <div>
@@ -2716,7 +2931,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-ledger" onclick="navigateTo('student-ledger')" type="button">SMS পাঠান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="module-header">
@@ -2729,8 +2944,10 @@
 <p class="font-bold text-[15px] mb-1">নির্দিষ্ট শ্রেণিতে বাড়তি/বিশেষ ফি ধার্য করুন</p>
 <p class="text-[12.5px] text-muted mb-5">নিয়মিত বেতন, খোরাকী, বিদ্যুৎ বিল, আবাসন ফি নির্ধারণ করতে "শিক্ষার্থীদের বেতন তালিকা" পেইজ ব্যবহার করুন। এখানে শুধু বিশেষ/অতিরিক্ত ফি (যেমনঃ লাইব্রেরি ফি, বিশেষ কার্যক্রম ফি) ধার্য করা যাবে।</p>
 <div class="grid grid-cols-3 gap-5">
+<div class="dept-cls-row">
 <div><label class="field-label">বিভাগ</label><select class="input-field" id="fa-dept" onchange="App.onFaDeptChange()"></select></div>
 <div><label class="field-label">শ্রেণি</label><select class="input-field" id="fa-class" onchange="App.onFaClassChange()"></select></div>
+</div>
 <div><label class="field-label">থাকার ধরন</label><select class="input-field" id="fa-restype"></select></div>
 <div><label class="field-label">ফি এর খাত</label><select class="input-field" id="fa-feetype"><option>লাইব্রেরি ফি</option><option>পরিবহন ফি</option><option>বিশেষ কার্যক্রম ফি</option><option>অন্যান্য</option></select></div>
 <div><label class="field-label">পরিমাণ (টাকা)</label><input class="input-field" id="fa-amount" placeholder="0" type="number"/></div>
@@ -2754,7 +2971,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-ledger" onclick="navigateTo('student-ledger')" type="button">SMS পাঠান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="module-header">
@@ -2775,7 +2992,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-ledger" onclick="navigateTo('student-ledger')" type="button">SMS পাঠান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="module-header">
@@ -2868,6 +3085,7 @@
 <label class="field-label">তারিখ নির্বাচন</label>
 <input class="input-field !w-auto" id="boarding-att-date" onchange="App.renderBoardingAttendance()" type="date"/>
 </div>
+<div class="dept-cls-row">
 <div>
 <label class="field-label">বিভাগ</label>
 <select class="input-field !w-auto min-w-[130px]" id="boarding-att-dept" onchange="App.renderBoardingAttendance()"><option value="">সকল বিভাগ</option></select>
@@ -2875,6 +3093,7 @@
 <div>
 <label class="field-label">শ্রেণি</label>
 <select class="input-field !w-auto min-w-[130px]" id="boarding-att-class" onchange="App.renderBoardingAttendance()"><option value="">সকল শ্রেণি</option></select>
+</div>
 </div>
 <div class="mt-5">
 <button class="btn-primary" onclick="App.markAllMeals(true)" type="button">
@@ -2980,6 +3199,7 @@
 </div>
 </div>
 <div class="flex flex-wrap gap-3 mb-5">
+<div class="dept-cls-row">
 <div>
 <label class="field-label">বিভাগ</label>
 <select class="input-field !w-auto min-w-[130px]" id="mealdisable-dept" onchange="App.renderMealDisableList()"><option value="">সকল বিভাগ</option></select>
@@ -2987,6 +3207,7 @@
 <div>
 <label class="field-label">শ্রেণি</label>
 <select class="input-field !w-auto min-w-[130px]" id="mealdisable-class" onchange="App.renderMealDisableList()"><option value="">সকল শ্রেণি</option></select>
+</div>
 </div>
 <div style="align-self:flex-end">
 <button class="btn-outline" onclick="App.renderMealDisableList()" type="button" style="height:42px">
@@ -3022,7 +3243,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-ledger" onclick="navigateTo('student-ledger')" type="button">SMS পাঠান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="module-header">
@@ -3079,7 +3300,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-ledger" onclick="navigateTo('student-ledger')" type="button">SMS পাঠান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="module-header">
@@ -3109,7 +3330,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-ledger" onclick="navigateTo('student-ledger')" type="button">SMS পাঠান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="module-header">
@@ -3132,7 +3353,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-ledger" onclick="navigateTo('student-ledger')" type="button">SMS পাঠান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="module-header">
@@ -3162,7 +3383,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-ledger" onclick="navigateTo('student-ledger')" type="button">SMS পাঠান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="module-header">
@@ -3173,8 +3394,10 @@
 </div>
 <div class="card p-4 mb-5">
 <div class="grid gap-3 mb-3" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+<div class="dept-cls-row">
 <div><label class="field-label">বিভাগ</label><select class="input-field" id="sledger-dept" onchange="App.onSledgerFilterChange()"><option value="">সকল বিভাগ</option></select></div>
 <div><label class="field-label">শ্রেণি</label><select class="input-field" id="sledger-class" onchange="App.searchStudentLedger()"><option value="">সকল শ্রেণি</option></select></div>
+</div>
 </div>
 <label class="field-label">শিক্ষার্থী খুঁজুন (নাম, আইডি বা মোবাইল)</label>
 <div style="position:relative">
@@ -3195,7 +3418,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-ledger" onclick="navigateTo('student-ledger')" type="button">SMS পাঠান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab active" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="module-header">
@@ -3226,7 +3449,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="student-ledger" onclick="navigateTo('student-ledger')" type="button">SMS পাঠান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="module-header">
@@ -3238,8 +3461,10 @@
 <div class="card p-5 mb-5">
 <div class="grid gap-3.5" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
 <div><label class="field-label">পরীক্ষা নির্বাচন করুন</label><select class="input-field" id="exc-exam" onchange="App.renderExamCollectTable()"></select></div>
+<div class="dept-cls-row">
 <div><label class="field-label">বিভাগ</label><select class="input-field" id="exc-dept" onchange="App.onExcFilterChange()"><option value="">সকল বিভাগ</option></select></div>
 <div><label class="field-label">শ্রেণি</label><select class="input-field" id="exc-class" onchange="App.renderExamCollectTable()"><option value="">সকল শ্রেণি</option></select></div>
+</div>
 <div class="col-span-3" style="grid-column:1/-1">
 <label class="field-label">শিক্ষার্থী খুঁজুন</label>
 <div class="flex items-center gap-2 border border-line rounded-xl px-3.5 py-2.5">
@@ -3263,7 +3488,7 @@
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="quick-fee" onclick="navigateTo('quick-fee')" type="button">দ্রুত ফি আদায়</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="exam-collect" onclick="navigateTo('exam-collect')" type="button">পরী���্ষার ফি</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="fee-history" onclick="navigateTo('fee-history')" type="button">আদায়ের ইতিহাস</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">শিক্ষার্থীদের বেতন তালিকা</button>
+<button class="fee-cfg-tab sub-nav-tab" data-sub-page="class-fee" onclick="navigateTo('class-fee')" type="button">বেতন তালিকা</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="discounted-list" onclick="navigateTo('discounted-list')" type="button">ছাড়প্রাপ্ত তালিকা</button>
 </div>
 <div class="module-header">
@@ -4321,7 +4546,7 @@
 </div>
 <script>
 function navigateTo(pageId, el){
-  var _hubDefault = {"hub-student":"admission","hub-finance":"boarding","hub-teacher":"teacher-list","hub-income":"income-list"};
+  var _hubDefault = {"hub-student":"student-list","hub-finance":"boarding","hub-teacher":"teacher-list","hub-income":"income-list"};
   if(_hubDefault[pageId]){ pageId = _hubDefault[pageId]; }
   /* দাখেলা পেজ এখন রোল পেজের ভেতরে ট্যাব হিসেবে আছে */
   var _dakhelaRedirect = (pageId === 'dakhela');
@@ -4330,9 +4555,10 @@ function navigateTo(pageId, el){
   var target = document.getElementById('page-'+pageId);
   if(target){ target.classList.add('active'); }
   document.querySelectorAll('.nav-link').forEach(function(a){ a.classList.remove('active-link'); });
+  var dataHub = (target && target.getAttribute('data-hub')) ? target.getAttribute('data-hub') : null;
   var hubId = (pageId==='hub-student'||pageId==='hub-finance'||pageId==='hub-teacher') ? pageId :
               pageId==='fee-config' ? 'fee-config' :
-              (target && target.getAttribute('data-hub')) ? target.getAttribute('data-hub') : null;
+              (dataHub && dataHub !== 'fee-config') ? dataHub : null;
   if(hubId){
     var hubLink = document.querySelector('.nav-link[data-hub-link="'+hubId+'"]');
     if(hubLink){ hubLink.classList.add('active-link'); }
@@ -5898,8 +6124,10 @@ var App = (function(){
       photoField('qa', '')+
       '<div><label class="field-label">নাম (বাংলা)</label><input id="qa-name" class="input-field"></div>'+
       '<div><label class="field-label">পিতার নাম</label><input id="qa-father" class="input-field"></div>'+
+      '<div class="dept-cls-row">'+
       '<div><label class="field-label">বিভাগ</label><select id="qa-dept" class="input-field" onchange="App.refreshQaClassOptions()">'+deptOptions(dept)+'</select></div>'+
       '<div><label class="field-label">শ্রেণি</label><select id="qa-class" class="input-field">'+classOptionsForDept(dept)+'</select></div>'+
+      '</div>'+
       '<div><label class="field-label">থাকার ধরন</label><select id="qa-restype" class="input-field">'+restypeOptionsForDept(dept)+'</select></div>'+
       '<div><label class="field-label">মোবাইল</label><input id="qa-mobile" class="input-field"></div>'+
       '<div><label class="field-label">ভর্তি ফি (টাকা)</label><input id="qa-fee" type="number" class="input-field" placeholder="0" value="'+(function(){ var d=deptOf(qfCurrentStudent&&qfCurrentStudent.cls||''); var df=state.admissionDefaults.byDept&&state.admissionDefaults.byDept[d]; return df?df.newFee:state.admissionDefaults.newFee; }())+'"></div>'+
@@ -5940,8 +6168,10 @@ var App = (function(){
       photoField('qe', s.photo||'')+
       '<div><label class="field-label">নাম (বাংলা)</label><input id="qe-name" class="input-field" value="'+esc(s.nameBn)+'"></div>'+
       '<div><label class="field-label">পিতার নাম</label><input id="qe-father" class="input-field" value="'+esc(s.father)+'"></div>'+
+      '<div class="dept-cls-row">'+
       '<div><label class="field-label">বিভাগ</label><select id="qe-dept" class="input-field" onchange="App.refreshQeClassOptions()">'+deptOptions(dept)+'</select></div>'+
       '<div><label class="field-label">শ্রেণি</label><select id="qe-class" class="input-field">'+classOptionsForDept(dept, s.cls)+'</select></div>'+
+      '</div>'+
       '<div><label class="field-label">থাকার ধরন</label><select id="qe-restype" class="input-field">'+restypeOptionsForDept(dept, s.restype)+'</select></div>'+
       '<div><label class="field-label">মোবাইল</label><input id="qe-mobile" class="input-field" value="'+esc(s.mobile)+'"></div>'+
       '<div><label class="field-label">রোল</label><input id="qe-roll" class="input-field" value="'+esc(s.roll)+'"></div>'+
@@ -11690,8 +11920,12 @@ document.addEventListener('DOMContentLoaded', function(){
     var lastPage = localStorage.getItem('du_last_page');
     if(lastPage && document.getElementById('page-'+lastPage)){
       navigateTo(lastPage);
+    } else {
+      navigateTo('student-list');
     }
-  } catch(e){}
+  } catch(e){
+    navigateTo('student-list');
+  }
 });
 
 </script>
