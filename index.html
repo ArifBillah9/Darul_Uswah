@@ -2307,10 +2307,8 @@
 </div>
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-start" onclick="navigateTo('teacher-salary-start')" type="button">বেতন শুরুর মাস</button>
 </div>
 <div class="card p-4 mb-3" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#f6faf8;border-color:var(--green-100,#d7ecdf)">
 <svg fill="none" height="16" stroke="var(--green-700)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16" style="flex-shrink:0"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
@@ -2323,11 +2321,6 @@
 <span class="hub-card-title">শিক্ষক তালিকা</span>
 <span class="hub-card-desc">সকল শিক্ষকের তথ্য দেখুন ও পরিচালনা করুন</span>
 </a>
-<a class="hub-card" href="#" onclick="navigateTo('teacher-salary');return false;">
-<span class="hub-card-icon"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1.1 3 2.5-1.3 2.2-3 2.5c-1.7.3-3 1.1-3 2.5s1.3 2.5 3 2.5 3-1.1 3-2.5"></path></svg></span>
-<span class="hub-card-title">শিক্ষক বেতন প্রদান</span>
-<span class="hub-card-desc">শিক্ষকদের মাসিক বেতন প্রদান করুন</span>
-</a>
 <a class="hub-card" href="#" onclick="navigateTo('teacher-salary-history');return false;">
 <span class="hub-card-icon"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M3 3v18h18"></path><path d="M7 14l4-4 3 3 5-6"></path></svg></span>
 <span class="hub-card-title">বেতন পরিশোধের ইতিহাস</span>
@@ -2337,11 +2330,6 @@
 <span class="hub-card-icon"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M12 9v4M12 17h.01"></path><path d="M10.3 4.3L2.7 18a2 2 0 001.7 3h15.2a2 2 0 001.7-3L13.7 4.3a2 2 0 00-3.4 0z"></path></svg></span>
 <span class="hub-card-title">বেতন বকেয়া</span>
 <span class="hub-card-desc">শিক্ষকদের বেতন বকেয়ার তালিকা</span>
-</a>
-<a class="hub-card" href="#" onclick="navigateTo('teacher-salary-start');return false;">
-<span class="hub-card-icon"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span>
-<span class="hub-card-title">বেতন শুরুর মাস</span>
-<span class="hub-card-desc">শিক্ষকভিত্তিক বেতন গণনা শুরুর মাস নির্ধারণ করুন</span>
 </a>
 </div>
 </section>
@@ -2750,7 +2738,7 @@
 <span class="qa-ic"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M12 9v4M12 17h.01"></path><path d="M10.3 4.3L2.7 18a2 2 0 001.7 3h15.2a2 2 0 001.7-3L13.7 4.3a2 2 0 00-3.4 0z"></path></svg></span>
 <span><span class="qa-tt block">বকেয়া তালিকা</span><span class="qa-sb">আদায় বাকি</span></span>
 </a>
-<a class="qa-tile" href="#" onclick="navigateTo('teacher-salary');return false;">
+<a class="qa-tile" href="#" onclick="navigateTo('fee-config');setTimeout(function(){App.openFeeTab('teacher');setTimeout(function(){App.openTeacherSubTab('pay');},50);},0);return false;">
 <span class="qa-ic"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1.1 3 2.5-1.3 2.2-3 2.5"></path></svg></span>
 <span><span class="qa-tt block">শিক্ষক বেতন</span><span class="qa-sb">বেতন প্রদান</span></span>
 </a>
@@ -3683,10 +3671,8 @@
 <section class="page-section" data-hub="hub-teacher" id="page-teacher-list">
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-start" onclick="navigateTo('teacher-salary-start')" type="button">বেতন শুরুর মাস</button>
 </div>
 <div class="module-header">
 <div>
@@ -3710,10 +3696,8 @@
 <section class="page-section" data-hub="hub-teacher" id="page-teacher-salary">
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-start" onclick="navigateTo('teacher-salary-start')" type="button">বেতন শুরুর মাস</button>
 </div>
 <div class="module-header">
 <div>
@@ -3733,10 +3717,8 @@
 <section class="page-section" data-hub="hub-teacher" id="page-teacher-salary-history">
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-start" onclick="navigateTo('teacher-salary-start')" type="button">বেতন শুরুর মাস</button>
 </div>
 <div class="module-header">
 <div>
@@ -3760,10 +3742,8 @@
 <section class="page-section" data-hub="hub-teacher" id="page-teacher-salary-due">
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-start" onclick="navigateTo('teacher-salary-start')" type="button">বেতন শুরুর মাস</button>
 </div>
 <div class="module-header">
 <div>
@@ -3773,7 +3753,7 @@
 </div>
 <div class="card p-0 overflow-x-auto">
 <table class="data-table" style="min-width:850px">
-<thead><tr><th>আইডি</th><th>নাম</th><th>পদবি</th><th>মাসিক বেতন</th><th>সর্বমোট বকেয়া</th><th>সর্বশেষ পরিশোধ</th><th>একশন</th></tr></thead>
+<thead><tr><th>আইডি</th><th>নাম</th><th>পদবি</th><th>মাসিক বেতন</th><th>সর্বমোট বকেয়া</th><th>সর্বশেষ পরিশোধ</th></tr></thead>
 <tbody id="tsdue-tbody"></tbody>
 </table>
 </div>
@@ -3782,10 +3762,8 @@
 <section class="page-section" data-hub="hub-teacher" id="page-teacher-salary-start">
 <div class="sub-nav-bar fee-cfg-tab-bar" data-hub-nav="hub-teacher" style="margin:6px 0 0">
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-list" onclick="navigateTo('teacher-list')" type="button">শিক্ষক তালিকা</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary" onclick="navigateTo('teacher-salary')" type="button">বেতন প্রদান</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-history" onclick="navigateTo('teacher-salary-history')" type="button">বেতন ইতিহাস</button>
 <button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-due" onclick="navigateTo('teacher-salary-due')" type="button">বেতন বকেয়া</button>
-<button class="fee-cfg-tab sub-nav-tab" data-sub-page="teacher-salary-start" onclick="navigateTo('teacher-salary-start')" type="button">বেতন শুরুর মাস</button>
 </div>
 <div class="module-header">
 <div>
@@ -3894,6 +3872,9 @@
 <div class="charge-sub-wrap">
 <div class="charge-sub-head"><span class="dot"></span><span>কার্যক্রম নির্বাচন করুন</span></div>
 <div class="charge-sub-bar">
+<button class="charge-sub-tab" data-ttab="pay" onclick="App.openTeacherSubTab('pay')">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+বেতন প্রদান</button>
 <button class="charge-sub-tab active" data-ttab="salary" onclick="App.openTeacherSubTab('salary')">
 <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1.1 3 2.5-1.3 2.2-3 2.5c-1.7.3-3 1.1-3 2.5s1.3 2.5 3 2.5 3-1.1 3-2.5"></path></svg>
 বেতন নির্ধারণ</button>
@@ -3903,6 +3884,20 @@
 <button class="charge-sub-tab" data-ttab="add" onclick="App.openTeacherSubTab('add')">
 <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><circle cx="9" cy="8" r="4"></circle><path d="M2 21c0-4 3-7 7-7s7 3 7 7"></path><line x1="19" x2="19" y1="8" y2="14"></line><line x1="16" x2="22" y1="11" y2="11"></line></svg>
 নতুন শিক্ষক নিয়োগ</button>
+</div>
+</div>
+
+<!-- সাব প্যানেল ০: বেতন প্রদান -->
+<div class="charge-sub-panel" id="ttab-pay" style="display:none">
+<div class="card p-5">
+<p class="font-extrabold text-[16px] mb-1" style="color:var(--green-700)">শিক্ষক বেতন প্রদান</p>
+<p class="text-[12px] text-muted mb-4">শিক্ষকের আইডি বা নাম দিয়ে খুঁজে বেতন প্রদান করুন।</p>
+<div class="flex items-center gap-2 border border-line rounded-xl px-3.5 py-3 max-w-[420px]">
+<svg fill="none" height="15" stroke="#8A8F8B" stroke-width="2" viewBox="0 0 24 24" width="15"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3" stroke-linecap="round"></path></svg>
+<input class="flex-1 outline-none text-[13px] bg-transparent placeholder:text-muted" id="tsal-cfg-search" onkeydown="if(event.key==='Enter'){App.teacherSalarySearchCfg();}" placeholder="শিক্ষকের আইডি বা নাম লিখুন" type="text"/>
+<button class="btn-primary !py-2 !px-4" onclick="App.teacherSalarySearchCfg()" type="button">খুঁজুন</button>
+</div>
+<div id="tsal-cfg-result" class="mt-4"></div>
 </div>
 </div>
 
@@ -4724,7 +4719,8 @@ function navigateTo(pageId, el){
   if(target){ target.classList.add('active'); }
   document.querySelectorAll('.nav-link').forEach(function(a){ a.classList.remove('active-link'); });
   var dataHub = (target && target.getAttribute('data-hub')) ? target.getAttribute('data-hub') : null;
-  var hubId = (pageId==='hub-student'||pageId==='hub-finance'||pageId==='hub-teacher') ? pageId :
+  var hubId = pageId==='dashboard' ? 'dashboard' :
+              (pageId==='hub-student'||pageId==='hub-finance'||pageId==='hub-teacher') ? pageId :
               pageId==='fee-config' ? 'fee-config' :
               (dataHub && dataHub !== 'fee-config') ? dataHub : null;
   if(hubId){
@@ -8649,7 +8645,7 @@ var App = (function(){
   }
   function computeResult(examId, studentId){
     var s = findStudent(studentId);
-    var subjects = s ? subjectsForClass(s.cls) : [];
+    var subjects = s ? subjectsForClassAndExam(s.cls, examId) : [];
     var entry = findResultEntry(examId, studentId);
     var marks = (entry && entry.marks) || {};
     var totalFull = 0, totalObtained = 0, anyFailSubject = false, anyEntered = false;
@@ -9366,6 +9362,8 @@ var App = (function(){
     toast(isEdit ? ('শিক্ষকের তথ্য সংরক্ষণ করা হয়েছে — আইডিঃ ' + idLabel) : ('নতুন শিক্ষক যুক্ত হয়েছে — আইডিঃ ' + idLabel));
     renderAll();
     navigateTo('fee-config');
+    openFeeTab('teacher');
+    openTeacherSubTab('salary');
   }
 
   function deleteTeacher(id){
@@ -9484,11 +9482,11 @@ var App = (function(){
   function renderTeacherSalaryDue(){
     var tbody = document.getElementById('tsdue-tbody'); if(!tbody) return;
     var rows = activeTeachers().map(function(t){ return {t:t, due:teacherDue(t)}; }).filter(function(r){ return r.due>0; });
-    if(!rows.length){ tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state">কোনো বেতন বকেয়া নেই</div></td></tr>'; return; }
+    if(!rows.length){ tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state">কোনো বেতন বকেয়া নেই</div></td></tr>'; return; }
     tbody.innerHTML = rows.map(function(r){
       var lastPaid = state.teacherSalaryHistory.filter(function(h){return h.teacherId===r.t.id;})[0];
       var lastLabel = lastPaid ? (lastPaid.month+', '+lastPaid.year) : 'কখনো নয়';
-      return '<tr><td>'+r.t.id+'</td><td>'+teacherNameCell(r.t)+'</td><td>'+esc(r.t.designation)+'</td><td>'+taka(r.t.monthlySalary)+'</td><td><span class="badge badge-red">'+taka(r.due)+'</span></td><td>'+esc(lastLabel)+'</td><td><button type="button" class="btn-outline" onclick="'+call1('App.openTeacherSalaryFromDue', r.t.id)+'">পরিশোধ করুন</button></td></tr>';
+      return '<tr><td>'+r.t.id+'</td><td>'+teacherNameCell(r.t)+'</td><td>'+esc(r.t.designation)+'</td><td>'+taka(r.t.monthlySalary)+'</td><td><span class="badge badge-red">'+taka(r.due)+'</span></td><td>'+esc(lastLabel)+'</td></tr>';
     }).join('');
   }
   function openTeacherSalaryFromDue(teacherId){
@@ -10295,7 +10293,7 @@ var App = (function(){
   }
   /* ── শিক্ষক ট্যাবের সাব-নেভিগেশন: বেতন নির্ধারণ ⇄ নতুন শিক্ষক নিয়োগ ── */
   function openTeacherSubTab(ttab){
-    var subs = ['salary','salary-start','add'];
+    var subs = ['pay','salary','salary-start','add'];
     subs.forEach(function(t){
       var el = document.getElementById('ttab-'+t);
       if(el) el.style.display = (t===ttab)?'':'none';
@@ -10305,6 +10303,22 @@ var App = (function(){
     });
     if(ttab==='salary') _renderCfgTeacherTable();
     if(ttab==='salary-start'){ _renderTss2List(); var yr=document.getElementById('tss2-year'); if(yr&&!yr._touched) yr.value=new Date().getFullYear(); }
+    if(ttab==='pay'){ var r=document.getElementById('tsal-cfg-result'); if(r) r.innerHTML=''; var s=document.getElementById('tsal-cfg-search'); if(s) s.value=''; }
+  }
+  function teacherSalarySearchCfg(){
+    var q = (document.getElementById('tsal-cfg-search').value||'').trim();
+    var result = document.getElementById('tsal-cfg-result'); if(!result) return;
+    if(!q){ result.innerHTML='<p class="text-[12px] text-muted">শিক্ষকের নাম বা আইডি লিখুন।</p>'; return; }
+    var teacher = activeTeachers().filter(function(t){
+      return t.id.toLowerCase()===q.toLowerCase() || t.nameBn.toLowerCase().indexOf(q.toLowerCase())>-1;
+    })[0];
+    if(!teacher){ result.innerHTML='<p class="text-[12px] text-muted">কোনো শিক্ষক পাওয়া যায়নি।</p>'; return; }
+    /* বেতন প্রদান UI — page-teacher-salary থেকে একই লজিক ব্যবহার */
+    document.getElementById('tsal-cfg-search').value = teacher.id;
+    /* teacher-salary পেজে গিয়ে সার্চ করা */
+    navigateTo('teacher-salary', document.querySelector('[data-hub-link="hub-teacher"]'));
+    document.getElementById('tsal-search').value = teacher.id;
+    teacherSalarySearch();
   }
   /* ===== ফি কনফিগারেশন → শিক্ষক → বেতন শুরুর মাস (tss2) ===== */
   var _tss2SelectedTeacher = null;
@@ -12084,16 +12098,7 @@ function downloadPageHtml(){
 
 document.addEventListener('DOMContentLoaded', function(){
   App.renderAll();
-  try {
-    var lastPage = localStorage.getItem('du_last_page');
-    if(lastPage && document.getElementById('page-'+lastPage)){
-      navigateTo(lastPage);
-    } else {
-      navigateTo('student-list');
-    }
-  } catch(e){
-    navigateTo('student-list');
-  }
+  navigateTo('dashboard');
 });
 
 </script>
