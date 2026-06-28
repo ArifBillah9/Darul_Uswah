@@ -59,6 +59,112 @@
 #dash-filter-bar .dfb-label-text{
   font-size:12.5px;font-weight:800;color:var(--green-deep);line-height:1;
 }
+/* === #dash-filter-bar: মোবাইল মোডে আল্ট্রা-কম্প্যাক্ট ২-লাইন ডিজাইন === */
+@media (max-width:640px){
+  #dash-filter-bar{
+    padding:7px 8px!important;
+    border-radius:12px!important;
+  }
+  #dash-filter-bar .dfb-inner{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:5px 6px;
+  }
+  #dash-filter-bar .dfb-label{
+    display:none;
+  }
+  #dash-filter-bar .dfb-divider{
+    display:none;
+  }
+  #dash-filter-bar .fee-cfg-tab-bar{
+    grid-column:1/-1;
+    width:100%!important;
+    display:flex!important;
+    grid-template-columns:none!important;
+    flex-wrap:nowrap!important;
+    order:1;
+    padding:3px!important;
+    gap:3px!important;
+    background:#e7f0ea!important;
+    border-radius:10px!important;
+  }
+  #dash-filter-bar .fee-cfg-tab{
+    flex:1 1 0!important;
+    min-width:0;
+    text-align:center;
+    white-space:nowrap!important;
+    padding:6px 0!important;
+    font-size:11.5px!important;
+    height:28px!important;
+    min-height:unset!important;
+    line-height:1!important;
+    border-radius:8px!important;
+    font-weight:700!important;
+    letter-spacing:.01em;
+    color:var(--green-700)!important;
+    flex-direction:row!important;
+    transition:all .15s ease;
+  }
+  #dash-filter-bar .fee-cfg-tab.active{
+    background:linear-gradient(135deg,#1a5c36 0%,#0F2A1D 100%)!important;
+    color:#fff!important;
+    box-shadow:0 2px 6px rgba(15,42,29,.3)!important;
+  }
+  #dash-filter-bar #dash-scope-day,
+  #dash-filter-bar #dash-scope-week,
+  #dash-filter-bar #dash-scope-month,
+  #dash-filter-bar #dash-scope-year{
+    grid-column:1/2;
+    order:2;
+    width:100%;
+    flex-wrap:nowrap;
+    gap:4px!important;
+  }
+  #dash-filter-bar #dash-scope-day .input-field,
+  #dash-filter-bar #dash-scope-week .input-field{
+    flex:1 1 auto;
+    width:auto!important;
+    min-width:0;
+    height:24px!important;
+    font-size:10.5px!important;
+    padding:0 4px!important;
+  }
+  #dash-filter-bar #dash-scope-day .btn-icon,
+  #dash-filter-bar #dash-scope-week .btn-icon{
+    width:24px!important;height:24px!important;
+  }
+  #dash-filter-bar #dash-week-range-label{
+    display:none;
+  }
+  #dash-filter-bar #dash-scope-month .field-label,
+  #dash-filter-bar #dash-scope-year .field-label{
+    display:none;
+  }
+  #dash-filter-bar #dash-scope-month select,
+  #dash-filter-bar #dash-scope-year select{
+    flex:1 1 auto;
+    width:auto!important;
+    min-width:0;
+    height:24px!important;
+    font-size:10.5px!important;
+    padding:0 4px!important;
+  }
+  #dash-filter-bar .btn-outline{
+    grid-column:2/3;
+    order:3;
+    width:100%;
+    margin-left:0!important;
+    justify-content:center;
+    display:flex;
+    align-items:center;
+    height:24px!important;
+    padding:0 6px!important;
+    font-size:10.5px!important;
+    white-space:nowrap;
+  }
+}
+
 /* === ie-nav-tabs: আয়-ব্যয় ব্যবস্থাপনা সুন্দর ট্যাব ডিজাইন === */
 .ie-nav-tabs{
   display:flex!important;gap:6px!important;flex-wrap:wrap;
@@ -97,28 +203,28 @@
 @media (max-width: 900px){
   /* ===== MOBILE TOPBAR — নতুন ডিজাইন ===== */
   #mobileTopbar{
-    position:fixed;top:0;left:0;right:0;z-index:100;height:64px;
+    position:fixed;top:0;left:0;right:0;z-index:100;height:62px;
     display:flex;align-items:center;gap:10px;
-    padding:0 12px 0 10px;
-    background:#0F2A1D;
-    box-shadow:0 1px 0 rgba(255,255,255,.06), 0 4px 20px rgba(0,0,0,.35);
+    padding:0 14px;
+    background:#ffffff;
+    border-bottom:1px solid #ebebeb;
+    box-shadow:none;
   }
-  /* নিচে একটি সুন্দর রঙিন লাইন */
+  /* নিচে রঙিন লাইন বাদ দেওয়া হয়েছে — পরিষ্কার মিনিমাল লুক */
   #mobileTopbar::after{
-    content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
-    background:linear-gradient(90deg,#3E8A5F 0%,#8FC3A6 50%,#FF9066 100%);
+    content:none;
   }
   /* Hamburger button */
   #mobileTopbar .mt-btn{
-    width:36px;height:36px;border-radius:0;
+    width:34px;height:34px;border-radius:0;
     background:transparent;border:none;
     display:flex;align-items:center;justify-content:center;
-    color:#fff;flex-shrink:0;position:relative;cursor:pointer;
-    transition:background .15s;
+    color:#1a1a1a;flex-shrink:0;position:relative;cursor:pointer;
+    transition:opacity .15s;
     outline:none;
   }
-  #mobileTopbar .mt-btn:active{background:rgba(255,255,255,.1)}
-  #mobileTopbar .mt-btn svg{width:18px;height:18px;stroke:#fff}
+  #mobileTopbar .mt-btn:active{opacity:.55;background:transparent}
+  #mobileTopbar .mt-btn svg{width:20px;height:20px;stroke:#1a1a1a}
   /* হ্যামবার্গার আইকন এনিমেশন */
   #mobileTopbar .mt-btn.is-menu-btn svg line{
     transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .2s ease,stroke-dashoffset .25s ease;
@@ -133,43 +239,44 @@
   body.nav-open #mobileTopbar .mt-btn.is-menu-btn svg line:nth-child(3){
     transform:translateY(-6px) rotate(-45deg);
   }
-  /* Brand */
+  /* Brand — মাঝখানে সেন্টার করা লোগো ও ট্যাগলাইন (Indochino স্টাইল) */
   #mobileTopbar .mt-brand{
-    flex:1;min-width:0;display:flex;align-items:center;gap:10px;
+    flex:1;min-width:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:1px;
+    text-align:center;
   }
   #mobileTopbar .mt-logo{
-    width:30px;height:30px;border-radius:0;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;
-    color:#0F2A1D;font-weight:900;font-size:12px;letter-spacing:-.5px;
-    background:linear-gradient(135deg,#8FC3A6 0%,#3E8A5F 100%);
-    box-shadow:0 0 0 2px rgba(143,195,166,.3);
+    display:none;
   }
   #mobileTopbar .mt-title{
-    font-weight:800;font-size:12px;line-height:1.25;color:#fff;
+    font-weight:800;font-size:15px;line-height:1.15;color:#1a1a1a;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-    letter-spacing:-.2px;
+    letter-spacing:.06em;text-transform:uppercase;
+    max-width:100%;
   }
   #mobileTopbar .mt-sub{
-    font-size:9px;color:rgba(255,255,255,.5);line-height:1.2;margin-top:1px;
+    font-size:8.5px;color:#8a8a8a;line-height:1.2;margin-top:1px;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-    letter-spacing:.3px;text-transform:uppercase;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+    max-width:100%;
   }
   #mobileTopbar .mt-dot{
-    position:absolute;top:9px;right:9px;width:7px;height:7px;
-    border-radius:50%;background:#FF9066;border:2px solid #0F2A1D;
+    position:absolute;top:7px;right:7px;width:7px;height:7px;
+    border-radius:50%;background:#FF9066;border:2px solid #fff;
     animation:pulse-dot 2s ease-in-out infinite;
   }
   @keyframes pulse-dot{
     0%,100%{box-shadow:0 0 0 0 rgba(255,144,102,.6)}
     50%{box-shadow:0 0 0 5px rgba(255,144,102,0)}
   }
-  /* Action buttons (search, notification) */
+  /* Action buttons (search, notification) — প্লেইন আইকন, কোনো বক্স নেই */
   #mobileTopbar .mt-btn:not(.is-menu-btn){
     width:32px;height:32px;border-radius:0;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.1);
+    background:transparent;
+    border:none;
   }
-  #mobileTopbar .mt-btn:not(.is-menu-btn):active{background:rgba(255,255,255,.14)}
+  #mobileTopbar .mt-btn:not(.is-menu-btn):active{opacity:.55}
+  #mobileTopbar .mt-btn:not(.is-menu-btn) svg{stroke:#1a1a1a}
 
   /* ===== MOBILE SEARCH PANEL ===== */
   #mobileSearch{
@@ -445,83 +552,92 @@
 
   /* ══════════════════════════════════════════════
      মোবাইল: sub-nav-bar & fee-cfg-tab-bar
+     — সব ট্যাব একসাথে, সুন্দর 3-কলাম গ্রিড
      ══════════════════════════════════════════════ */
   .sub-nav-bar.fee-cfg-tab-bar,
   .fee-cfg-tab-bar {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 5px !important;
-    padding: 5px 6px !important;
-    margin: 8px 0 4px !important;
-    border-radius: 12px !important;
-    border: 1px solid rgba(62,138,95,.18) !important;
-    background: linear-gradient(135deg,#eef6f1 0%,#f4f9f6 100%) !important;
-    box-shadow: 0 1px 4px rgba(62,138,95,.08) !important;
-    /* fade-edge scroll indicator */
-    -webkit-mask-image: linear-gradient(to right, transparent 0px, #000 10px, #000 calc(100% - 14px), transparent 100%) !important;
-    mask-image: linear-gradient(to right, transparent 0px, #000 10px, #000 calc(100% - 14px), transparent 100%) !important;
+    padding: 6px !important;
+    margin: 10px 0 6px !important;
+    border-radius: 14px !important;
+    border: 1.5px solid rgba(62,138,95,.16) !important;
+    background: #f0f7f3 !important;
+    box-shadow: 0 2px 8px rgba(62,138,95,.08), inset 0 1px 0 rgba(255,255,255,.8) !important;
+    overflow: visible !important;
   }
-  /* hide scrollbar on webkit */
-  .sub-nav-bar.fee-cfg-tab-bar::-webkit-scrollbar,
-  .fee-cfg-tab-bar::-webkit-scrollbar { display: none !important; }
 
-  /* individual tab pill */
+  /* প্রতিটি ট্যাব পিল */
   .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab,
   .fee-cfg-tab-bar .fee-cfg-tab {
-    flex-shrink: 0 !important;
-    white-space: nowrap !important;
-    padding: 6px 13px !important;
-    font-size: 11.5px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    padding: 8px 6px !important;
+    font-size: 11px !important;
     font-weight: 700 !important;
-    border-radius: 8px !important;
-    min-height: unset !important;
-    height: 30px !important;
-    line-height: 1 !important;
+    line-height: 1.35 !important;
+    border-radius: 9px !important;
+    min-height: 38px !important;
+    height: auto !important;
     border: none !important;
-    color: var(--green-700, #2d7a50) !important;
-    background: transparent !important;
-    transition: background .15s, color .15s, box-shadow .15s !important;
+    color: #3E7A58 !important;
+    background: rgba(255,255,255,.6) !important;
+    transition: background .15s, color .15s, box-shadow .15s, transform .1s !important;
+    gap: 4px !important;
+    flex-direction: column !important;
+    cursor: pointer !important;
+    box-shadow: 0 1px 2px rgba(0,0,0,.06) !important;
   }
   .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab:active,
   .fee-cfg-tab-bar .fee-cfg-tab:active {
-    background: rgba(62,138,95,.14) !important;
-  }
-  /* active pill — green filled */
-  .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab.active,
-  .fee-cfg-tab-bar .fee-cfg-tab.active {
-    background: var(--green-700, #2d7a50) !important;
-    color: #fff !important;
-    box-shadow: 0 2px 8px rgba(62,138,95,.28) !important;
-  }
-  .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab.active svg,
-  .fee-cfg-tab-bar .fee-cfg-tab.active svg {
-    stroke: #fff !important;
-  }
-  /* icon inside tab */
-  .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab svg,
-  .fee-cfg-tab-bar .fee-cfg-tab svg {
-    width: 12px !important;
-    height: 12px !important;
+    transform: scale(.96) !important;
+    background: rgba(62,138,95,.15) !important;
+    box-shadow: none !important;
   }
 
-  /* fee-config page sticky strip: full bleed on mobile */
+  /* অ্যাক্টিভ ট্যাব — গাঢ় সবুজ */
+  .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab.active,
+  .fee-cfg-tab-bar .fee-cfg-tab.active {
+    background: var(--green-700, #2E7D52) !important;
+    color: #fff !important;
+    box-shadow: 0 3px 10px rgba(46,125,82,.35) !important;
+  }
+  .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab.active svg,
+  .fee-cfg-tab-bar .fee-cfg-tab.active svg { stroke: #fff !important; }
+
+  /* আইকন */
+  .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab svg,
+  .fee-cfg-tab-bar .fee-cfg-tab svg {
+    width: 14px !important;
+    height: 14px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* শেষ রো-তে কম ট্যাব থাকলে center করো */
+  .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab:last-child:nth-child(3n - 1),
+  .fee-cfg-tab-bar .fee-cfg-tab:last-child:nth-child(3n - 1) {
+    grid-column: 2 / span 1 !important;
+  }
+  .sub-nav-bar.fee-cfg-tab-bar .fee-cfg-tab:last-child:nth-child(3n - 2):not(:first-child),
+  .fee-cfg-tab-bar .fee-cfg-tab:last-child:nth-child(3n - 2):not(:first-child) {
+    grid-column: 1 / span 3 !important;
+    max-width: 50% !important;
+    margin: 0 auto !important;
+  }
+
+  /* fee-config sticky strip */
   #page-fee-config > .fee-cfg-tab-bar {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 50 !important;
-    margin-left: -1rem !important;
-    margin-right: -1rem !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+    position: sticky !important; top: 0 !important; z-index: 50 !important;
+    margin-left: -1rem !important; margin-right: -1rem !important;
+    padding-left: 1rem !important; padding-right: 1rem !important;
     border-radius: 0 !important;
-    border-left: none !important;
-    border-right: none !important;
-    border-top: none !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,.08) !important;
+    border-left: none !important; border-right: none !important; border-top: none !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1) !important;
   }
 }
 @media (max-width: 400px){
@@ -1495,21 +1611,22 @@
   }
   .charge-sub-tab.active svg{ stroke:#fff; opacity:1; }
 
-  /* মোবাইল: এক লাইনে স্ক্রলযোগ্য পিল বার */
+  /* মোবাইল: সব ট্যাব একসাথে র‍্যাপ হয়ে দেখানো (গ্রিড স্টাইল) */
   @media (max-width:640px){
     .charge-sub-wrap{ margin:14px 0 18px; border-radius:14px; }
     .charge-sub-head{ padding:10px 13px; }
     .charge-sub-bar{
-      flex-wrap:nowrap;
-      overflow-x:auto;
+      flex-wrap:wrap;
+      overflow-x:visible;
       padding:12px 13px;
       gap:8px;
-      -webkit-overflow-scrolling:touch;
-      scroll-snap-type:x proximity;
-      scrollbar-width:none;
     }
-    .charge-sub-bar::-webkit-scrollbar{ display:none; }
-    .charge-sub-tab{ scroll-snap-align:start; flex:0 0 auto; padding:9px 14px; }
+    .charge-sub-tab{
+      flex:1 1 auto;
+      justify-content:center;
+      padding:9px 10px;
+      font-size:11.5px;
+    }
   }
 
   /* === ফি ছাড়: টপ কমপ্যাক্ট লেআউট (শিক্ষার্থী + খাত + ফর্ম) === */
