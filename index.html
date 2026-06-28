@@ -95,78 +95,254 @@
   .grid-cols-\[1fr_1\.6fr\]{grid-template-columns:1fr!important}
 }
 @media (max-width: 900px){
-  /* Sidebar becomes a slide-in drawer */
-  aside.sidebar{
-    position:fixed!important;top:0;left:0;bottom:0;z-index:60;
-    width:84vw!important;max-width:300px;
-    transform:translateX(-100%);
-    transition:transform .25s ease;
-    box-shadow:0 10px 40px rgba(0,0,0,.18);
-  }
-  body.nav-open aside.sidebar{transform:translateX(0)}
-  /* Backdrop */
-  body::before{
-    content:"";position:fixed;inset:0;background:rgba(15,23,42,.45);
-    opacity:0;pointer-events:none;transition:opacity .25s;z-index:55;
-  }
-  body.nav-open::before{opacity:1;pointer-events:auto}
-  body.nav-open{overflow:hidden}
-  /* Professional mobile top navbar */
+  /* ===== MOBILE TOPBAR — নতুন ডিজাইন ===== */
   #mobileTopbar{
-    position:fixed;top:0;left:0;right:0;z-index:70;height:58px;
-    display:flex;align-items:center;gap:.5rem;
-    padding:0 12px;
-    background:linear-gradient(180deg,#ffffff 0%,#fbfdfb 100%);
-    border-bottom:1px solid #e5e7eb;
-    box-shadow:0 2px 10px rgba(15,23,42,.06);
-    backdrop-filter:saturate(140%) blur(6px);
+    position:fixed;top:0;left:0;right:0;z-index:100;height:64px;
+    display:flex;align-items:center;gap:10px;
+    padding:0 12px 0 10px;
+    background:#0F2A1D;
+    box-shadow:0 1px 0 rgba(255,255,255,.06), 0 4px 20px rgba(0,0,0,.35);
   }
+  /* নিচে একটি সুন্দর রঙিন লাইন */
+  #mobileTopbar::after{
+    content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,#3E8A5F 0%,#8FC3A6 50%,#FF9066 100%);
+  }
+  /* Hamburger button */
   #mobileTopbar .mt-btn{
-    width:40px;height:40px;border-radius:11px;
-    background:#f3f6f4;border:1px solid #e5e7eb;
+    width:44px;height:44px;border-radius:0;
+    background:transparent;border:none;
     display:flex;align-items:center;justify-content:center;
-    color:#0F2A1D;flex-shrink:0;position:relative;
+    color:#fff;flex-shrink:0;position:relative;cursor:pointer;
+    transition:background .15s;
+    outline:none;
   }
-  #mobileTopbar .mt-btn:active{background:#e8ede9}
-  #mobileTopbar .mt-btn svg{width:20px;height:20px}
+  #mobileTopbar .mt-btn:active{background:rgba(255,255,255,.1)}
+  #mobileTopbar .mt-btn svg{width:22px;height:22px;stroke:#fff}
+  /* হ্যামবার্গার আইকন এনিমেশন */
+  #mobileTopbar .mt-btn.is-menu-btn svg line{
+    transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .2s ease,stroke-dashoffset .25s ease;
+    transform-origin:center;
+  }
+  body.nav-open #mobileTopbar .mt-btn.is-menu-btn svg line:nth-child(1){
+    transform:translateY(6px) rotate(45deg);
+  }
+  body.nav-open #mobileTopbar .mt-btn.is-menu-btn svg line:nth-child(2){
+    opacity:0;transform:scaleX(0);
+  }
+  body.nav-open #mobileTopbar .mt-btn.is-menu-btn svg line:nth-child(3){
+    transform:translateY(-6px) rotate(-45deg);
+  }
+  /* Brand */
   #mobileTopbar .mt-brand{
-    flex:1;min-width:0;display:flex;align-items:center;gap:8px;
+    flex:1;min-width:0;display:flex;align-items:center;gap:10px;
   }
   #mobileTopbar .mt-logo{
-    width:34px;height:34px;border-radius:10px;flex-shrink:0;
+    width:38px;height:38px;border-radius:0;flex-shrink:0;
     display:flex;align-items:center;justify-content:center;
-    color:#fff;font-weight:800;font-size:13px;
-    background:linear-gradient(145deg,#3E8A5F,#0F2A1D);
-    box-shadow:0 4px 10px rgba(15,42,29,.25);
+    color:#0F2A1D;font-weight:900;font-size:15px;letter-spacing:-.5px;
+    background:linear-gradient(135deg,#8FC3A6 0%,#3E8A5F 100%);
+    box-shadow:0 0 0 2px rgba(143,195,166,.3);
   }
   #mobileTopbar .mt-title{
-    font-weight:800;font-size:14px;line-height:1.15;color:#0F2A1D;
+    font-weight:800;font-size:13.5px;line-height:1.25;color:#fff;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    letter-spacing:-.2px;
   }
   #mobileTopbar .mt-sub{
-    font-size:10.5px;color:#6b7280;line-height:1.1;margin-top:1px;
+    font-size:10px;color:rgba(255,255,255,.5);line-height:1.2;margin-top:2px;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    letter-spacing:.3px;text-transform:uppercase;font-weight:600;
   }
   #mobileTopbar .mt-dot{
-    position:absolute;top:7px;right:8px;width:8px;height:8px;
-    border-radius:50%;background:#f97316;border:2px solid #fff;
+    position:absolute;top:9px;right:9px;width:7px;height:7px;
+    border-radius:50%;background:#FF9066;border:2px solid #0F2A1D;
+    animation:pulse-dot 2s ease-in-out infinite;
   }
-  /* Slide-down search panel */
+  @keyframes pulse-dot{
+    0%,100%{box-shadow:0 0 0 0 rgba(255,144,102,.6)}
+    50%{box-shadow:0 0 0 5px rgba(255,144,102,0)}
+  }
+  /* Action buttons (search, notification) */
+  #mobileTopbar .mt-btn:not(.is-menu-btn){
+    width:40px;height:40px;border-radius:0;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  #mobileTopbar .mt-btn:not(.is-menu-btn):active{background:rgba(255,255,255,.14)}
+
+  /* ===== MOBILE SEARCH PANEL ===== */
   #mobileSearch{
-    position:fixed;top:58px;left:0;right:0;z-index:69;
-    background:#fff;border-bottom:1px solid #e5e7eb;
+    position:fixed;top:64px;left:0;right:0;z-index:99;
+    background:#0F2A1D;border-bottom:1px solid rgba(255,255,255,.08);
     padding:10px 12px;transform:translateY(-110%);
-    transition:transform .22s ease;box-shadow:0 6px 14px rgba(0,0,0,.06);
+    transition:transform .25s cubic-bezier(.4,0,.2,1);
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
   }
   body.search-open #mobileSearch{transform:translateY(0)}
   #mobileSearch input{
-    width:100%;height:42px;border:1px solid #e5e7eb;border-radius:12px;
-    padding:0 14px;font-size:14px;outline:none;background:#f7faf8;
+    width:100%;height:42px;border:1px solid rgba(255,255,255,.15);border-radius:0;
+    padding:0 14px 0 38px;font-size:14px;outline:none;
+    background:rgba(255,255,255,.08);color:#fff;
   }
+  #mobileSearch input::placeholder{color:rgba(255,255,255,.4)}
+  #mobileSearch input:focus{border-color:rgba(143,195,166,.6);background:rgba(255,255,255,.12)}
+  #mobileSearch .gsearch-wrap{position:relative;}
+  #mobileSearch .gsearch-results{
+    position:absolute;top:calc(100% + 8px);left:0;right:0;
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 18px 40px rgba(0,0,0,.25);max-height:60vh;overflow-y:auto;
+    z-index:200;display:none;
+  }
+  #mobileSearch .gsearch-results.show{display:block;}
+
+  /* ===== SIDEBAR DRAWER — নতুন ডিজাইন ===== */
+  aside.sidebar{
+    position:fixed!important;
+    top:0;left:0;bottom:0;
+    z-index:9999;
+    width:84vw!important;max-width:300px;
+    transform:translateX(-110%);
+    transition:transform .32s cubic-bezier(.4,0,.2,1), box-shadow .32s ease;
+    box-shadow:none;
+    border-radius:0;
+    border-right:none!important;
+    background:#fff!important;
+    /* কাস্টম স্ক্রলবার */
+    overflow-y:auto;
+    scrollbar-width:thin;
+    scrollbar-color:#d0ddd5 transparent;
+  }
+  /* ওয়েবকিট স্ক্রলবার — স্কোয়ার, কোনো border-radius নেই */
+  aside.sidebar::-webkit-scrollbar{
+    width:3px;
+  }
+  aside.sidebar::-webkit-scrollbar-track{
+    background:transparent;
+    border-radius:0;
+  }
+  aside.sidebar::-webkit-scrollbar-thumb{
+    background:#c4d5cb;
+    border-radius:0!important;
+    border:none!important;
+  }
+  aside.sidebar::-webkit-scrollbar-thumb:hover{
+    background:#8FC3A6;
+  }
+  aside.sidebar::-webkit-scrollbar-button{
+    display:none;
+  }
+  aside.sidebar::-webkit-scrollbar-corner{
+    background:transparent;
+  }
+  body.nav-open aside.sidebar{transform:translateX(0);box-shadow:8px 0 60px rgba(0,0,0,.35),2px 0 0 rgba(255,255,255,.04);}
+
+  /* Backdrop overlay */
+  body::before{
+    content:"";position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(8,18,12,.62);
+    opacity:0;pointer-events:none;
+    transition:opacity .32s;z-index:9998;
+    backdrop-filter:blur(4px);
+  }
+  body.nav-open::before{opacity:1;pointer-events:auto}
+  body.nav-open{overflow:hidden}
+
+  /* ===== SIDEBAR HEADER — উন্নত ডিজাইন (top:0 থেকে শুরু) ===== */
+  .sidebar-mobile-header{
+    display:flex!important;align-items:stretch;justify-content:space-between;
+    padding:0;border-bottom:none;margin-bottom:0;
+    background:#0F2A1D;
+    position:sticky;top:0;z-index:2;
+    min-height:72px;
+    flex-shrink:0;
+  }
+  /* উপরের গ্রেডিয়েন্ট লাইন বাদ দেওয়া হয়েছে */
+  /* নিচে বিভাজক */
+  .sidebar-mobile-header::after{
+    content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,rgba(143,195,166,.4),rgba(143,195,166,.1) 70%,transparent);
+  }
+  .sidebar-mobile-header-inner{
+    display:flex;align-items:center;gap:12px;
+    padding:16px 14px 14px;flex:1;min-width:0;
+  }
+  .smh-logo-wrap{
+    width:42px;height:42px;border-radius:0;flex-shrink:0;
+    background:linear-gradient(135deg,#2C6B47 0%,#3E8A5F 100%);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-weight:900;font-size:16px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.15), 0 2px 8px rgba(0,0,0,.3);
+    position:relative;
+  }
+  .smh-logo-wrap::after{
+    content:'';position:absolute;bottom:-2px;right:-2px;
+    width:10px;height:10px;border-radius:50%;
+    background:#3E8A5F;border:2px solid #0F2A1D;
+  }
+  .smh-text{flex:1;min-width:0;}
+  .sidebar-mobile-header .smh-title{
+    font-size:13.5px;font-weight:800;color:#fff;
+    line-height:1.25;display:block;letter-spacing:-.2px;
+  }
+  .smh-sub{
+    font-size:9px;color:rgba(255,255,255,.45);font-weight:700;
+    letter-spacing:.6px;text-transform:uppercase;margin-top:3px;display:block;
+  }
+  .sidebar-close-btn{
+    width:52px;border-radius:0;
+    background:transparent;border:none;border-left:1px solid rgba(255,255,255,.07);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;color:rgba(255,255,255,.5);
+    transition:background .15s,color .15s;
+    flex-shrink:0;
+  }
+  .sidebar-close-btn:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.85)}
+  .sidebar-close-btn:active{background:rgba(0,0,0,.2);color:#fff}
+  .sidebar-close-btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;}
+
+  /* Sidebar inner layout */
+  aside.sidebar .flex.items-center.gap-2.px-1.mb-7{display:none!important}
+  aside.sidebar{padding:0!important;}
+
+  /* nav-link */
+  .nav-link{
+    padding:12px 14px!important;
+    font-size:13.5px!important;font-weight:700!important;
+    border-radius:0!important;
+    margin-bottom:1px!important;
+    transition:background .12s ease,color .12s ease;
+  }
+  .nav-link.active-link{
+    background:linear-gradient(90deg,rgba(62,138,95,.13) 0%,rgba(143,195,166,.05) 100%)!important;
+    color:var(--green-700)!important;
+  }
+  .nav-link.active-link::before{
+    border-radius:0!important;
+    width:3px!important;left:0!important;top:6px!important;bottom:6px!important;
+    background:var(--green-600)!important;
+  }
+  .nav-link:active{background:rgba(62,138,95,.09)!important;}
+
+  /* submenu */
+  .submenu-link{
+    padding:9px 14px!important;border-radius:0!important;
+    font-size:12.5px!important;
+  }
+  .submenu-link.active-link{
+    border-radius:0!important;
+    border-left:3px solid var(--green-500);
+    padding-left:11px!important;
+  }
+
+  /* bottom */
+  aside.sidebar .mt-auto{padding:12px 8px 28px!important;}
+
   /* Hide original desktop header on mobile */
   header:not(#mobileTopbar){display:none!important}
   /* Offset body content for fixed topbar */
-  body{padding-top:58px!important}
+  body{padding-top:64px!important}
   main.flex-1{padding-left:.75rem!important;padding-right:.75rem!important;padding-bottom:1.25rem!important;padding-top:.5rem!important}
 }
 @media (min-width: 901px){
@@ -1302,7 +1478,7 @@
 
 <!-- Professional mobile top navbar -->
 <header id="mobileTopbar" role="banner">
-  <button class="mt-btn" type="button" aria-label="menu" onclick="document.body.classList.toggle('nav-open');document.body.classList.remove('search-open')">
+  <button class="mt-btn is-menu-btn" type="button" aria-label="menu" onclick="document.body.classList.toggle('nav-open');document.body.classList.remove('search-open')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   </button>
   <div class="mt-brand">
@@ -1321,7 +1497,10 @@
   </button>
 </header>
 <div id="mobileSearch">
-  <input id="mobileSearchInput" type="text" placeholder="শিক্ষার্থী খুঁজুন (নাম, আইডি, মোবাইল)" oninput="(function(v){var g=document.getElementById('gsearch-input');if(g){g.value=v;if(window.App&&App.globalSearch)App.globalSearch();}})(this.value)" />
+  <div class="gsearch-wrap">
+    <input id="mobileSearchInput" type="text" placeholder="শিক্ষার্থী খুঁজুন (নাম, আইডি, মোবাইল)" oninput="(function(v){var g=document.getElementById('gsearch-input');if(g){g.value=v;}if(window.App&&App.globalSearch)App.globalSearch('mobile-gsearch-results');})(this.value)" />
+    <div class="gsearch-results" id="mobile-gsearch-results"></div>
+  </div>
 </div>
 <script>
 (function(){
@@ -1333,6 +1512,7 @@
       var tb=document.getElementById('mobileTopbar');
       if(sp && !sp.contains(e.target) && tb && !tb.contains(e.target)){
         document.body.classList.remove('search-open');
+        var mbox=document.getElementById('mobile-gsearch-results'); if(mbox){ mbox.classList.remove('show'); }
       }
     }
     if(!document.body.classList.contains('nav-open')) return;
@@ -1367,6 +1547,19 @@
 <div class="flex min-h-screen">
 <!-- ============ SIDEBAR ============ -->
 <aside class="sidebar w-[252px] shrink-0 bg-white border-r border-line flex flex-col px-4 py-6 overflow-y-auto">
+<!-- Mobile-only sidebar header with close button -->
+<div class="sidebar-mobile-header" style="display:none">
+  <div class="sidebar-mobile-header-inner">
+    <div class="smh-logo-wrap">জা</div>
+    <div class="smh-text">
+      <span class="smh-title">জামি'আ দারুল উসওয়াহ</span>
+      <span class="smh-sub">ব্যবস্থাপনা সিস্টেম</span>
+    </div>
+  </div>
+  <button class="sidebar-close-btn" type="button" aria-label="close menu" onclick="document.body.classList.remove('nav-open')">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+</div>
 <!-- Logo -->
 <div class="flex items-center gap-2 px-1 mb-7">
 <div class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style="background:var(--green-700)">
@@ -1403,18 +1596,8 @@
         <span style="background:#D69A1F;color:#fff;font-size:9px;padding:1px 5px;border-radius:8px;margin-left:auto;font-weight:700">নতুন</span>
 </a>
 </nav>
-<!-- ডেটা ব্যবস্থাপনা -->
 <div class="mt-auto pt-6">
-<p class="text-[11px] font-bold tracking-widest text-muted px-3 mb-2">ডেটা ব্যবস্থাপনা</p>
 <div class="flex flex-col gap-1">
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-muted hover:bg-gray-50 font-medium text-[13px]" href="#" onclick="App.exportBackup();return false;">
-<svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
-          ব্যাকআপ ডাউনলোড
-        </a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-muted hover:bg-gray-50 font-medium text-[13px]" href="#" onclick="document.getElementById('app-restore-input').click();return false;">
-<svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 8v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4"></path><polyline points="7 13 12 8 17 13"></polyline><line x1="12" x2="12" y1="8" y2="20"></line></svg>
-          ব্যাকআপ থেকে পুনরুদ্ধার
-        </a>
 <input accept=".json" id="app-restore-input" onchange="App.importBackup(this)" style="display:none" type="file"/>
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-[13px]" href="#" onclick="App.logout();return false;" style="color:#C13F3C">
 <svg class="shrink-0" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" x2="9" y1="12" y2="12"></line></svg>
@@ -1673,7 +1856,7 @@
 <option>আসবাব ক্রয়</option><option>মেন্টেনেস</option>
 <option>আপ্যায়ন</option><option>বিদ্যুৎ বিল</option><option>ইন্টারনেট (নেট)</option>
 <option>মোবাইল বিল</option><option>বোডিং</option>
-<option>প্রচার ও মাহফিল</option><option>অন্যান্য</option>
+<option>প্রচার ও মাহফিল</option><option>পেপার</option><option>অন্যান্য</option>
 </select>
 <select class="input-field" id="expense-month-filter" onchange="App.renderExpenseList()" style="max-width:150px">
 <option value="">সকল মাস</option>
@@ -5156,9 +5339,9 @@ var App = (function(){
     }).join('');
   }
   /* ---------------- গ্লোবাল সার্চ — উপরের সার্চ বক্স থেকে যেকোনো শিক্ষার্থী খুঁজে এক ক্লিকে সম্পূর্ণ প্রোফাইল খোলা ---------------- */
-  function globalSearch(){
+  function globalSearch(targetId){
     var input = document.getElementById('gsearch-input');
-    var box = document.getElementById('gsearch-results');
+    var box = document.getElementById(targetId||'gsearch-results');
     if(!input || !box) return;
     var q = (input.value||'').trim().toLowerCase();
     if(!q){ box.classList.remove('show'); box.innerHTML=''; return; }
@@ -5178,7 +5361,9 @@ var App = (function(){
   ------------------------------------------------------------------------------------------------------------- */
   function openStudentProfile(id){
     var box = document.getElementById('gsearch-results'); if(box) box.classList.remove('show');
+    var mbox = document.getElementById('mobile-gsearch-results'); if(mbox){ mbox.classList.remove('show'); mbox.innerHTML=''; }
     var input = document.getElementById('gsearch-input'); if(input) input.value='';
+    var minput = document.getElementById('mobileSearchInput'); if(minput) minput.value='';
     var s = findStudent(id); if(!s){ toast('শিক্ষার্থী পাওয়া যায়নি', true); return; }
 
     var admDue = Math.max(0, (s.admissionFee||0) - (s.admissionPaid||0));
@@ -9244,6 +9429,36 @@ var App = (function(){
         '</div>';
     }).join('');
     cardsWrap.innerHTML = html1 + html2;
+    /* ---- মোবাইলে ২ কলাম stat cards ---- */
+    (function(){
+      function fixStatCardsMobile(){
+        var isMobile = window.innerWidth <= 640;
+        if(isMobile){
+          cardsWrap.style.gridTemplateColumns = 'repeat(2,1fr)';
+          cardsWrap.style.gap = '8px';
+          var cards = cardsWrap.querySelectorAll('div[style*="grid-column"]');
+          cards.forEach(function(el){
+            el.style.gridColumn = 'span 1';
+            var bigVal = el.querySelector('p[style*="28px"]');
+            if(bigVal) bigVal.style.fontSize = '18px';
+            var bigVal2 = el.querySelector('p[style*="26px"]');
+            if(bigVal2) bigVal2.style.fontSize = '17px';
+            el.style.padding = '12px 11px';
+            el.style.borderRadius = '13px';
+          });
+        } else {
+          cardsWrap.style.gridTemplateColumns = 'repeat(20,1fr)';
+          cardsWrap.style.gap = '.75rem';
+          var cards2 = cardsWrap.querySelectorAll('div[style*="grid-column"]');
+          cards2.forEach(function(el){ el.style.gridColumn = 'span 5'; });
+        }
+      }
+      fixStatCardsMobile();
+      if(!window._statCardResizeAttached){
+        window._statCardResizeAttached = true;
+        window.addEventListener('resize', function(){ var w=document.getElementById('dash-stat-cards'); if(w) fixStatCardsMobile(); });
+      }
+    })();
     /* ---- বিভিন্ন খাতের পরিসংখ্যান কার্ড (ভর্তি ফি, পরীক্ষা ফি, বিদ্যুৎ বিল, আয়-ব্যয়ের খাতসমূহ) ---- */
     var extraWrap = document.getElementById('dash-extra-stat-cards');
     if(extraWrap){
@@ -9265,7 +9480,7 @@ var App = (function(){
         }
       });
       /* -- incomeExpenses থেকে বিভিন্ন খাতের আয়/ব্যয় (এই সময়কালে) -- */
-      var ieSums = {donationSadaka:0, zakat:0, furnitureSale:0, miscIncome:0, maintenance:0, hospitality:0, mobileBill:0, internetBill:0, promotionMahfil:0, boardingBazar:0, rice:0, fuel:0, totalIncome:0, totalExpense:0};
+      var ieSums = {donationSadaka:0, zakat:0, furnitureSale:0, miscIncome:0, maintenance:0, hospitality:0, mobileBill:0, internetBill:0, promotionMahfil:0, paper:0, boardingBazar:0, rice:0, fuel:0, totalIncome:0, totalExpense:0};
       (state.incomeExpenses||[]).forEach(function(r){
         if(!_ieInPeriod(r.date)) return;
         var amt = Number(r.amount||0);
@@ -9283,6 +9498,7 @@ var App = (function(){
           else if(cat==='মোবাইল বিল') ieSums.mobileBill += amt;
           else if(cat==='ইন্টারনেট (নেট)') ieSums.internetBill += amt;
           else if(cat==='প্রচার ও মাহফিল') ieSums.promotionMahfil += amt;
+          else if(cat==='পেপার') ieSums.paper += amt;
           else if(cat==='বোডিং'){
             if(r.boardingSub==='বাজার') ieSums.boardingBazar += amt;
             else if(r.boardingSub==='চাউল') ieSums.rice += amt;
@@ -9304,6 +9520,7 @@ var App = (function(){
       var icWifi  = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a16 16 0 0120 0"/><path d="M5 12a11 11 0 0114 0"/><path d="M8.5 15.5a6 6 0 017 0"/><path d="M12 19h.01"/></svg>';
       var icMic   = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect height="11" rx="3" width="6" x="9" y="2"/><path d="M5 11a7 7 0 0014 0"/><path d="M12 18v3"/></svg>';
       var icCart  = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M2 3h2l2.4 12.4a2 2 0 002 1.6h8.6a2 2 0 002-1.6L21 7H6"/></svg>';
+      var icPaper = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v3H4z"/><path d="M4 7v13a2 2 0 002 2h12a2 2 0 002-2V7"/><path d="M8 11h8M8 15h8M8 19h5"/></svg>';
       var icRice  = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12c0-5 3-9 7-9s7 4 7 9"/><path d="M3 12h18l-1.5 8h-15z"/></svg>';
       var icFuel  = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V8a2 2 0 012-2h7a2 2 0 012 2v14"/><path d="M3 22h11"/><path d="M14 11h2l3 3v5a1.5 1.5 0 01-3 0v-1a1 1 0 00-1-1h-1"/><circle cx="7.5" cy="13.5" r="1.5"/></svg>';
       var extraCards = [
@@ -9319,6 +9536,7 @@ var App = (function(){
         {label:'মোবাইল বিল', value: taka(ieSums.mobileBill), accent:'red', ic:icPhone},
         {label:'ইন্টারনেট নেট', value: taka(ieSums.internetBill), accent:'red', ic:icWifi},
         {label:'প্রচার ও মাহফিল', value: taka(ieSums.promotionMahfil), accent:'red', ic:icMic},
+        {label:'পেপার', value: taka(ieSums.paper), accent:'red', ic:icPaper},
         {label:'বোডিং বাজার', value: taka(ieSums.boardingBazar), accent:'red', ic:icCart},
         {label:'চাউল', value: taka(ieSums.rice), accent:'red', ic:icRice},
         {label:'জালানী', value: taka(ieSums.fuel), accent:'red', ic:icFuel}
@@ -10554,7 +10772,7 @@ function _renderCfgProfileCards(){
      আয়-ব্যয় ব্যবস্থাপনা
   ════════════════════════════════════════════════════════════ */
   var INCOME_CATS = ['দান','যাকাত','সাদাকা','বিবিধ আয়','আসবাব বিক্রয়','অন্যান্য'];
-  var EXPENSE_CATS = ['আসবাব ক্রয়','মেন্টেনেস','আপ্যায়ন','বিদ্যুৎ বিল','ইন্টারনেট (নেট)','মোবাইল বিল','বোডিং','প্রচার ও মাহফিল','অন্যান্য'];
+  var EXPENSE_CATS = ['আসবাব ক্রয়','মেন্টেনেস','আপ্যায়ন','বিদ্যুৎ বিল','ইন্টারনেট (নেট)','মোবাইল বিল','বোডিং','প্রচার ও মাহফিল','পেপার','অন্যান্য'];
   var BOARDING_SUB_CATS = ['বাজার','চাউল','জ্বালানী','অন্যান্য'];
   var MONTHS_BN_IE = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
 
