@@ -827,19 +827,27 @@
   .form-office-box{ margin-top:14px; border:1px dashed #8A8F8B; border-radius:6px; padding:10px 14px; font-size:11.5px; color:#5b6360; }
   .form-page-num{ text-align:center; font-size:10px; color:#8A8F8B; margin-top:14px; }
 
-  @media print{
-    body *{ visibility:hidden; }
-    #print-root, #print-root *{ visibility:visible; }
-    #print-root{ display:block !important; position:absolute; left:0; top:0; width:100%; margin:0; padding:0; }
-    .receipt-sheet{ border:2px solid #16201C !important; width:100% !important; max-width:100% !important; }
-    .form-sheet{ border:none; width:100%; box-shadow:none; padding:14px 18px; }
-    .receipt-no-row .rn-title{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-    .receipt-fee-table tbody tr.tr-highlight td{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-    @page{ size:210mm 148mm; margin:6mm; }
-    /* ভর্তি ফরম ও রেজাল্ট শিট — A4 portrait */
-    body.print-form-mode @page{ size:A4 portrait; margin:8mm; }
-    body.print-form-mode .form-sheet{ width:100%; padding:12px 16px; page-break-after:always; }
+@media print{
+  body *{ visibility:hidden; }
+  #print-root, #print-root *{ visibility:visible; }
+  #print-root{ display:block !important; position:absolute; left:0; top:0; width:100%; margin:0; padding:0; }
+  .receipt-sheet{ border:2px solid #16201C !important; width:100% !important; max-width:100% !important; }
+  .form-sheet{ border:none; width:100%; box-shadow:none; padding:14px 18px; }
+  .receipt-no-row .rn-title{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .receipt-fee-table tbody tr.tr-highlight td{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+  @page{
+    size:210mm 148mm;
+    margin:6mm;
   }
+
+  /* ভর্তি ফরম ও রেজাল্ট শিট */
+  body.print-form-mode .form-sheet{
+    width:100%;
+    padding:12px 16px;
+    page-break-after:always;
+  }
+}
   /* ===== ID CARD CUSTOM STYLES ===== */
   #idcard-grid {
     display: grid !important;
